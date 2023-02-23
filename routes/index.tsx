@@ -1,5 +1,4 @@
-import { Head } from "$fresh/runtime.ts";
-import Counter from "../islands/Counter.tsx";
+import { Head } from "$fresh/runtime.ts"
 
 export default function Home() {
   return (
@@ -7,16 +6,14 @@ export default function Home() {
       <Head>
         <title>Merge Panic</title>
       </Head>
-      <div class="p-4 mx-auto max-w-screen-md">
+      <div class="px-4 mx-auto max-w-screen-md grid gap-6">
         <img
           src="/logo.svg"
           class="w-32 h-32"
           alt="Merge Panic logo"
         />
-        <p class="my-6">
-          Welcome to Merge Panic blog build with `fresh`.
-        </p>
-        <Counter start={3} />
+        <p>Welcome to Merge Panic blog build with `fresh`.</p>
+        <p>Start by openning first blog post: <a class='underline' href='/blog/hello-world'>Hello world</a>.</p>
         <div class="gap-x-4 flex justify-center">
           <a href="https://fresh.deno.dev">
             <img width="197" height="37" src="https://fresh.deno.dev/fresh-badge.svg" alt="Made with Fresh" />
