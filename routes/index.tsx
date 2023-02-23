@@ -1,4 +1,4 @@
-import { Head } from "$fresh/runtime.ts"
+import { Head } from "$fresh/runtime.ts";
 
 export default function Home() {
   return (
@@ -13,13 +13,26 @@ export default function Home() {
           alt="Merge Panic logo"
         />
         <p>Welcome to Merge Panic blog build with `fresh`.</p>
-        <p>Start by openning first blog post: <a class='underline' href='/blog/hello-world'>Hello world</a>.</p>
+        <span>
+          Start by openning first blog post:&nbsp;
+          <a class="underline" href="/blog/hello-world">Hello world</a>.
+        </span>
         <div class="gap-x-4 flex justify-center">
           <a href="https://fresh.deno.dev">
-            <img width="197" height="37" src="https://fresh.deno.dev/fresh-badge.svg" alt="Made with Fresh" />
+            <img
+              width="197"
+              height="37"
+              src="https://fresh.deno.dev/fresh-badge.svg"
+              alt="Made with Fresh"
+            />
           </a>
           <a href="https://fresh.deno.dev">
-            <img width="197" height="37" src="https://fresh.deno.dev/fresh-badge-dark.svg" alt="Made with Fresh" />
+            <img
+              width="197"
+              height="37"
+              src="https://fresh.deno.dev/fresh-badge-dark.svg"
+              alt="Made with Fresh"
+            />
           </a>
         </div>
       </div>
