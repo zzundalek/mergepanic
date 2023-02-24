@@ -4,7 +4,42 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Merge Panic</title>
+				<title>MergePanic - Dev, hiking and usuals</title>
+				<meta
+					name='description'
+					content='Geekish blog about programming, hiking, learning and usuals.'
+				/>
+
+				<meta property='og:url' content='http://mergepanic.com' />
+				<meta property='og:type' content='website' />
+				<meta
+					property='og:title'
+					content='MergePanic - Dev, hiking and usuals'
+				/>
+				<meta
+					property='og:description'
+					content='Geekish blog about programming, hiking, learning and usuals.'
+				/>
+				<meta
+					property='og:image'
+					content='http://mergepanic.com/logo-no-background.png'
+				/>
+
+				<meta name='twitter:card' content='summary_large_image' />
+				<meta property='twitter:domain' content='mergepanic.com' />
+				<meta property='twitter:url' content='http://mergepanic.com' />
+				<meta
+					name='twitter:title'
+					content='MergePanic - Dev, hiking and usuals'
+				/>
+				<meta
+					name='twitter:description'
+					content='Geekish blog about programming, hiking, learning and usuals.'
+				/>
+				<meta
+					name='twitter:image'
+					content='http://mergepanic.com/logo-no-background.png'
+				/>
 			</Head>
 			<div class='px-4 mx-auto max-w-screen-md grid gap-6'>
 				<img
