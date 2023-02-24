@@ -10,4 +10,13 @@ import manifest from "./fresh.gen.ts";
 import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 
-await start(manifest, { plugins: [twindPlugin(twindConfig)] });
+// TODO Deno import map in deno.json not supported yet https://github.com/denoland/fresh/issues/1001
+const manifestWithDenoImportMap = {
+    ...manifest,
+    config: {
+        ...manifest.config,
+        importMap: './deno.json'
+    }
+}
+
+await start(manifestWithDenoImportMap, { plugins: [twindPlugin(twindConfig)] });
