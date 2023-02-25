@@ -8,6 +8,7 @@ export interface Post {
 	content: string
 }
 
+/** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} */
 export async function loadPost(id: string): Promise<Post | null> {
 	let text: string
 	try {
@@ -30,4 +31,18 @@ export async function loadPost(id: string): Promise<Post | null> {
 		snippet,
 		content,
 	}
+}
+
+/** Returns all blog posts ordered from newest to oldest. @throws {Error} */
+export async function listPosts(): Promise<Post[]> {
+	const promises = []
+	for await (const file of Deno.readDir('./data/posts')) {
+		const id = file.name.slice(0, -3)
+		promises.push(loadPost(id))
+	}
+
+	const posts = await Promise.all(promises) as Post[]
+	posts.sort((a, b) => b.published.getTime() - a.published.getTime())
+
+	return posts
 }
