@@ -10,7 +10,7 @@
   },
   "fmt": {
     "files": {
-      "include": ["components/", "islands/", "routes/", "utils/"],
+      "include": ["components/", "islands/", "routes/", "utils/", "main.ts", "dev.ts"],
       "exclude": ["fresh.gen.ts"]
     },
 		"options": {
