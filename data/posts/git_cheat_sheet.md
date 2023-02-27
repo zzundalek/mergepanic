@@ -12,10 +12,15 @@ Assuming there are people like me who are prone to skip long explanations and po
 
 
 
-## Rebase branch on master
-*Once I was told to 'Rebase branch on master...'. Quite a funny story now but at that time I had no idea of 1) what the heck does it mean 2) why I should do it 3) why I can't just merge it without rebase.*
+## Rebase branch on develop
+*Once I was told to 'Rebase branch on develop...'. Quite a funny story now but at that time I had no idea of 1) what the heck does it mean 2) why I should do it 3) why I can't just merge it without rebase.*
 
 ### Why you should do it?
+You have been developing something in a new separate branch and develop branch has changed. Now
+
+### Why you should NOT do it?
+- 
+
 
 ### How to do it
 What is rebase
