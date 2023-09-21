@@ -1,11 +1,28 @@
 export default function Footer() {
 	return (
-		<div class='bg-white flex flex-col md:flex-row w-full gap-8 md:gap-16 px-8 py-8 text-sm'>
-			<div class='text-gray-500 space-y-2 m-auto'>
-				<div class='text-xs'>
-					Copyright © 2023 Merge Panic<br />
-					All right reserved.
-				</div>
+		<div class='bg-white flex flex-col md:flex-row w-full gap-6 md:gap-14 px-8 py-8 text-xs justify-center items-center mt-10'>
+			<div>
+				<a href='https://fresh.deno.dev'>
+					<img
+						width='197'
+						height='37'
+						src='https://fresh.deno.dev/fresh-badge.svg'
+						alt='Made with Fresh'
+					/>
+				</a>
+			</div>
+			<div>
+				Logo made by&nbsp;
+				<a
+					href='https://www.designevo.com/'
+					title='Free Online Logo Maker'
+				>
+					DesignEvo<br /> free logo creator
+				</a>
+			</div>
+			<div>
+				Copyright © 2023 Merge Panic<br />
+				All right reserved.
 			</div>
 		</div>
 	)

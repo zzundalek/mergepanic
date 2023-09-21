@@ -19,7 +19,7 @@ export function Ogp() {
 			/>
 			<meta
 				property='og:image'
-				content='http://mergepanic.com/logo-no-background.png'
+				content='http://mergepanic.com/logo.png'
 			/>
 
 			<meta name='twitter:card' content='summary_large_image' />
@@ -35,7 +35,7 @@ export function Ogp() {
 			/>
 			<meta
 				name='twitter:image'
-				content='http://mergepanic.com/logo-no-background.png'
+				content='http://mergepanic.com/logo.png'
 			/>
 		</>
 	)

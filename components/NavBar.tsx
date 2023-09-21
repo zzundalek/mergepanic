@@ -6,8 +6,8 @@ export function NavBar() {
 		<div class='flex flex-row items-center justify-between max-w-screen-md mx-auto'>
 			<a href='/'>
 				<img
-					src='/logo.svg'
-					class='mx-5 w-20 h-20'
+					src='/logo.png'
+					class='mx-5 w-16'
 					alt='Merge Panic logo'
 				/>
 			</a>
