@@ -10,8 +10,11 @@ export function GlobalStyle() {
 			<link
 				href='https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap'
 				rel='stylesheet'
-			>
-			</link>
+			/>
+			<script
+				src='https://kit.fontawesome.com/921eaf85c7.js'
+				crossorigin='anonymous'
+			/>
 		</>
 	)
 }

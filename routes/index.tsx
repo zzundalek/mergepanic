@@ -6,6 +6,7 @@ import { GlobalStyle } from '../components/GlobalStyle.tsx'
 import { NavBar } from '../components/NavBar.tsx'
 import Footer from '../components/Footer.tsx'
 import PostEntry from '../components/PostEntry.tsx'
+import Header from '../components/Header.tsx'
 
 export const handler: Handlers<Post[]> = {
 	async GET(_req, ctx) {
@@ -18,15 +19,14 @@ export default function Home(props: PageProps<Post[]>) {
 	const posts = props.data
 	return (
 		<>
-			<Head>
-				<Ogp />
-				<GlobalStyle />
-			</Head>
+			<Header />
 			<NavBar />
-			<div class='px-4 mx-auto max-w-screen-md grid gap-10'>
-				<h1 class='mt-10 text-6xl text-center font-indie-flower'>
+			<div class='my-10 px-6 mx-auto max-w-screen-md'>
+				<h1 class='text-6xl text-center font-indie-flower'>
 					Geekish blog about dev, hiking and usuals
 				</h1>
+			</div>
+			<div class='px-4 mt-14 mx-auto max-w-screen-md grid gap-10'>
 				<div>
 					<ul class='grid gap-4'>
 						{posts.map((post) => PostEntry({ post }))}
