@@ -1,7 +1,11 @@
 import * as jose from 'jose'
 
-function getJwtSecretKey() {
-	return 'cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f596f2' // TODO fix to get form env_var
+function getJwtSecretKey(): string {
+	const jwtSecretKey = Deno.env.get('JWT_SECRET')
+	if (jwtSecretKey == null) {
+		throw new Error('Failed to obtain jwt secret from ENV!')
+	}
+	return jwtSecretKey
 }
 
 function getSecret() {
