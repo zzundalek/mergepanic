@@ -29,11 +29,13 @@ async function verifyToken(jwtBearer: string): Promise<UserInfo | null> {
 	let payload: jose.JWTPayload, protectedHeader: jose.JWTHeaderParameters
 
 	try {
-		// TODO add required params
 		// deno-fmt-ignore
 		({ payload, protectedHeader } = await jose.jwtVerify(
 			match.groups.jwt,
 			secret,
+			{
+				requiredClaims: ['sub', 'iat']
+			}
 		))
 	} catch (error) {
 		console.error('Failed to verify token')
@@ -43,7 +45,6 @@ async function verifyToken(jwtBearer: string): Promise<UserInfo | null> {
 	console.log(protectedHeader)
 	console.log(payload)
 
-	// TODO fix required params
 	return payload as unknown as UserInfo
 }
 
