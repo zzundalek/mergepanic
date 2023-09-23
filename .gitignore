@@ -10,3 +10,6 @@
 
 # Fresh build directory
 _fresh/
+
+# kv files
+mergePanic**
