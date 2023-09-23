@@ -1,5 +1,5 @@
 import { Handlers } from '$fresh/server.ts'
-import BlogPostService from '../../../../service/blog-post.ts'
+import BlogPostService from '../../../../service/blog-post-service.ts'
 import { State } from '../../_middleware.ts'
 
 export const handler: Handlers<void, State> = {
@@ -7,8 +7,8 @@ export const handler: Handlers<void, State> = {
 		const id = ctx.params.id
 		const userId = ctx.state.userInfo.sub
 
-		// TODO handle error response?
-		await BlogPostService.removeLike(id, userId)
+		const blogPostService = new BlogPostService()
+		await blogPostService.removeLike(id, userId)
 
 		return new Response(null, {
 			status: 200,
