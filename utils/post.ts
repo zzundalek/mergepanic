@@ -1,6 +1,8 @@
 import { parse } from 'frontmatter'
+import { exists } from '$std/fs/mod.ts'
 
-export interface Post {
+const postDirPath = './data/posts'
+interface Post {
 	id: string
 	title: string
 	published: Date
@@ -9,10 +11,10 @@ export interface Post {
 }
 
 /** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} */
-export async function loadPost(id: string): Promise<Post | null> {
+async function loadPost(id: string): Promise<Post | null> {
 	let text: string
 	try {
-		text = await Deno.readTextFile(`./data/posts/${id}.md`)
+		text = await Deno.readTextFile(`${postDirPath}/${id}.md`)
 	} catch (error) {
 		if (error instanceof Deno.errors.NotFound) {
 			return null
@@ -33,10 +35,10 @@ export async function loadPost(id: string): Promise<Post | null> {
 	}
 }
 
-/** Returns all blog posts ordered from newest to oldest. @throws {Error} */
-export async function listPosts(): Promise<Post[]> {
+/** Returns all blog posts ordered from newest to oldest. @throws {Error} on fail */
+async function listPosts(): Promise<Post[]> {
 	const promises = []
-	for await (const file of Deno.readDir('./data/posts')) {
+	for await (const file of Deno.readDir(postDirPath)) {
 		const id = file.name.slice(0, -3)
 		promises.push(loadPost(id))
 	}
@@ -46,3 +48,12 @@ export async function listPosts(): Promise<Post[]> {
 
 	return posts
 }
+
+async function doesPostExist(id: string): Promise<boolean> {
+	return await exists(`${postDirPath}/${id}.md`, {
+		isReadable: true,
+		isFile: true,
+	})
+}
+
+export { doesPostExist, listPosts, loadPost, type Post }

@@ -32,6 +32,22 @@ abstract class Dao<T> {
 		return entry as Deno.KvEntry<NonNullable<T>>
 	}
 
+	/** Sets entry to the Deno KV and return its id. Returns null on failure. */
+	public async setEntry(id: string, entryValue: T): Promise<string | null> {
+		const entryKey = [this.key, id]
+
+		console.log(`Setting entry for [${entryKey}]: `, entryValue)
+		const result = await kv.set(entryKey, entryValue)
+		if (!result.ok) {
+			console.error(`Error setting entry for [${entryKey}]`)
+			return null
+		}
+
+		console.info(`Successfull set entry for [${entryKey}]`, entryValue)
+
+		return id
+	}
+
 	/** Commits transaction to the Deno KV. @throws {Error} on failure. */
 	public async commit(
 		atomicOperation: Deno.AtomicOperation,

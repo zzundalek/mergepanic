@@ -1,4 +1,5 @@
 interface BlogPost {
+	id: string
 	likes: Set<string>
 }
 
