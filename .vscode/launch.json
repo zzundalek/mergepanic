@@ -16,7 +16,8 @@
                 "--inspect-wait",
                 "--allow-all"
             ],
-            "attachSimplePort": 9229
+            "attachSimplePort": 9229,
+            "envFile": "${workspaceFolder}/.envrc"
         },
         {
             "request": "launch",
@@ -31,7 +32,8 @@
                 "--allow-all",
                 "--unstable"
             ],
-            "attachSimplePort": 9229
+            "attachSimplePort": 9229,
+            "envFile": "${workspaceFolder}/.envrc"
         }
     ]
 }
