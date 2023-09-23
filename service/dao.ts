@@ -1,5 +1,5 @@
 // TODO extract
-const kv = await Deno.openKv('mergePanic')
+const kv = await Deno.openKv()
 
 abstract class Dao<T> {
 	private readonly key: string
