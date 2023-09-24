@@ -1,4 +1,4 @@
-import { BlogPost } from '../interfaces/blog-post.ts'
+import { BlogPost, Like } from '../interfaces/blog-post.ts'
 import { HttpError } from '../utils/http-error.ts'
 import { doesPostExist } from '../utils/post.ts'
 import Dao from './dao.ts'
@@ -19,6 +19,17 @@ class BlogPostService extends Dao<BlogPost> {
 		blogPost: BlogPost,
 	): Promise<string | null> {
 		return await super.setEntry(blogPostId, blogPost)
+	}
+
+	private addUserLike(likes: Like[], userId: string): Like[] {
+		if (likes.findIndex((like) => like.userId === userId) !== -1) {
+			return [...likes]
+		}
+		return [...likes, { userId, ts: Date.now() }]
+	}
+
+	private removeUserLike(likes: Like[], userId: string): Like[] {
+		return likes.filter((like) => like.userId !== userId)
 	}
 
 	/** Create a blog post entry if corresponding md file exists, @throws {HttpError | Error} on failure.  */
@@ -45,16 +56,17 @@ class BlogPostService extends Dao<BlogPost> {
 		if (blogPostEntry == null) {
 			const newBlogPost: BlogPost = {
 				id: blogPostId,
-				likes: new Set<string>(),
+				likes: [{ userId, ts: Date.now() }],
 			}
-			newBlogPost.likes.add(userId)
 
 			await this.createNewBlogPostEntry(newBlogPost)
 			return
 		}
 
 		const blogPost = blogPostEntry.value
-		blogPost.likes.add(userId)
+		const updatedLikes = this.addUserLike(blogPost.likes, userId)
+
+		blogPost.likes = updatedLikes
 
 		const updateOperation = this.getKv()
 			.atomic()
@@ -74,7 +86,9 @@ class BlogPostService extends Dao<BlogPost> {
 		}
 
 		const blogPost = blogPostEntry.value
-		blogPost.likes.delete(userId)
+		const updatedLikes = this.removeUserLike(blogPost.likes, userId)
+
+		blogPost.likes = updatedLikes
 
 		const updateOperation = this.getKv()
 			.atomic()

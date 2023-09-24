@@ -1,6 +1,11 @@
 interface BlogPost {
 	id: string
-	likes: Set<string>
+	likes: Like[]
 }
 
-export type { BlogPost }
+interface Like {
+	userId: string
+	ts: number
+}
+
+export type { BlogPost, Like }
