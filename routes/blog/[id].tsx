@@ -1,9 +1,6 @@
 import { Handlers, PageProps } from '$fresh/server.ts'
 import { loadPost, Post } from '../../utils/post.ts'
 import * as gfm from 'gfm'
-import { NavBar } from '../../components/NavBar.tsx'
-import Header from '../../components/Header.tsx'
-import Footer from '../../components/Footer.tsx'
 
 export const handler: Handlers = {
 	async GET(_req, ctx) {
@@ -21,8 +18,6 @@ export default function BlogPostPage(props: PageProps<Post>) {
 	const html = gfm.render(post.content)
 	return (
 		<>
-			<Header />
-			<NavBar></NavBar>
 			<div class='px-4 mx-auto max-w-screen-md grid gap-6'>
 				<style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
 				<div>
@@ -39,7 +34,6 @@ export default function BlogPostPage(props: PageProps<Post>) {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</>
 	)
 }

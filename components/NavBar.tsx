@@ -1,6 +1,3 @@
-import { JSX } from 'preact'
-import { IS_BROWSER } from '$fresh/runtime.ts'
-
 export function NavBar() {
 	return (
 		<div class='flex flex-row items-center justify-between max-w-screen-md mx-auto'>
