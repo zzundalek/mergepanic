@@ -6,13 +6,13 @@ export default function Error404() {
 			<Head>
 				<title>404 - Page not found</title>
 			</Head>
-			<div class='px-4 py-8 mx-auto bg-[#86efac]'>
+			<div class='px-4 py-8 mx-auto bg-[#ffe6b3]'>
 				<div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
 					<img
 						class='my-6'
 						src='/logo.png'
-						width='128'
-						height='128'
+						width='200'
+						height='200'
 						alt='the Merge Panic logo'
 					/>
 					<h1 class='text-4xl font-bold'>404 - Page not found</h1>
