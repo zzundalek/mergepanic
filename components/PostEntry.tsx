@@ -13,7 +13,9 @@ export default function PostEntry(props: { post: Post }) {
 						{published.toLocaleDateString()}
 					</p>
 					<p class='mt-2 text-gray-600'>{snippet}</p>
-					<p class='text-yellow-600'>Read more</p>
+					<p class='text-yellow-600'>
+						Read more&nbsp;<i class='fa-solid fa-chevron-right'></i>
+					</p>
 				</li>
 				<hr class='mt-4' />
 			</figure>
