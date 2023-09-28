@@ -2,7 +2,7 @@
 name: Chores
 about: Cleaning, deleting, refactoring and other chores
 title: "[Chores]"
-labels: chores
+labels: chores, needs triage
 assignees: ''
 
 ---
