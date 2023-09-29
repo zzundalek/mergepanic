@@ -1,5 +1,5 @@
 import { Handlers, PageProps } from '$fresh/server.ts'
-import TweetButton from '../../components/TweetButton.tsx'
+import TweetButton from '../../components/tweet-button.tsx'
 import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
 
 import * as gfm from 'gfm'

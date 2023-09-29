@@ -1,5 +1,5 @@
 import { Handlers, PageProps } from '$fresh/server.ts'
-import PostEntry from '../components/PostEntry.tsx'
+import PostEntry from '../components/post-entry.tsx'
 import BlogPostService, { BlogPost } from '../service/blog-posts.ts'
 
 export const handler: Handlers<BlogPost[]> = {

@@ -1,7 +1,7 @@
 import { AppProps } from '$fresh/server.ts'
-import Footer from '../components/Footer.tsx'
-import { NavBar } from '../components/NavBar.tsx'
-import { Ogp } from '../components/Ogp.tsx'
+import Footer from '../components/footer.tsx'
+import { NavBar } from '../components/nav-bar.tsx'
+import { Ogp } from '../components/ogp.tsx'
 
 export default function App({ Component }: AppProps) {
 	return (
