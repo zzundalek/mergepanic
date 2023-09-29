@@ -1,6 +1,9 @@
 import { Handlers, PageProps } from '$fresh/server.ts'
+import { useSignal } from '@preact/signals'
 import TweetButton from '../../components/tweet-button.tsx'
+import PostLike from '../../islands/post-like.tsx'
 import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
+import frontEndGlobals from '../../utils/front-end-globals.ts'
 
 import * as gfm from 'gfm'
 
@@ -21,6 +24,14 @@ export const handler: Handlers<BlogPost> = {
 export default function BlogPostPage(props: PageProps<BlogPost>) {
 	const post = props.data
 	const html = gfm.render(post.content)
+
+	// TODO can be may extracted to global state ?
+	const postSignal = useSignal({
+		id: post.id,
+		likesCount: post.likes.length,
+		liked: false,
+	})
+
 	return (
 		<>
 			<div class='px-4 mx-auto max-w-screen-md grid gap-6'>
@@ -33,11 +44,10 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 							&nbsp;
 							<span>{post.published.toLocaleDateString()}</span>
 						</div>
-						<div>
-							<i class='fa-regular fa-thumbs-up'></i>
-							&nbsp;
-							<span>{post.likes.length}</span>
-						</div>
+						<PostLike
+							post={postSignal}
+							frontEndGlobals={frontEndGlobals}
+						/>
 					</div>
 					<div
 						class='mt-6 markdown-body'
@@ -45,11 +55,10 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 					>
 					</div>
 					<div class='text-gray-400 text-base mt-6 flex flex-row-reverse gap-3'>
-						<div>
-							<i class='fa-regular fa-thumbs-up'></i>
-							&nbsp;
-							<span>{post.likes.length}</span>
-						</div>
+						<PostLike
+							post={postSignal}
+							frontEndGlobals={frontEndGlobals}
+						/>
 						<TweetButton
 							url={props.url.href}
 							text={`Merge Panic: ${post.title}`}

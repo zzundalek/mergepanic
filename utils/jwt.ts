@@ -9,15 +9,16 @@ function getJwtSecretKey(): string {
 }
 
 function getSecret() {
-	return new TextEncoder().encode(_internals.getJwtSecretKey())
+	return jose.base64url.decode(_internals.getJwtSecretKey())
 }
 
 export interface UserInfo {
 	sub: string
-	iat: string
+	iat: number
 }
 
 async function verifyToken(jwtBearer: string): Promise<UserInfo | null> {
+	console.log(`Verify token ${jwtBearer}`)
 	const match = jwtBearer.match(/^Bearer (?<jwt>.+)$/)
 	if (match?.groups == null) {
 		console.log(`Invalid token '${jwtBearer}'.`)
@@ -30,10 +31,11 @@ async function verifyToken(jwtBearer: string): Promise<UserInfo | null> {
 
 	try {
 		// deno-fmt-ignore
-		({ payload, protectedHeader } = await jose.jwtVerify(
+		({ payload, protectedHeader } = await jose.jwtDecrypt(
 			match.groups.jwt,
 			secret,
 			{
+				issuer: 'merge_panic',
 				requiredClaims: ['sub', 'iat']
 			}
 		))
@@ -48,6 +50,20 @@ async function verifyToken(jwtBearer: string): Promise<UserInfo | null> {
 	return payload as unknown as UserInfo
 }
 
-export default { verifyToken }
+async function encryptToken(userId: string): Promise<string> {
+	const secret = getSecret()
+
+	const jwt = await new jose.EncryptJWT({})
+		.setProtectedHeader({ alg: 'dir', enc: 'A128CBC-HS256' })
+		.setIssuer('merge_panic')
+		.setSubject(userId)
+		.setIssuedAt()
+		.encrypt(secret)
+
+	console.log(jwt)
+	return jwt
+}
+
+export default { verifyToken, encryptToken }
 
 export const _internals = { getJwtSecretKey }

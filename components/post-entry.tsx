@@ -14,9 +14,8 @@ export default function PostEntry(props: { post: BlogPost }) {
 							{published.toLocaleDateString()}
 						</div>
 						<div>
-							<i class='fa-regular fa-thumbs-up'></i>
-							&nbsp;
-							<span>{likes.length}</span>
+							<i class='fa-solid fa-arrow-trend-up'></i>
+							<span>&nbsp;{likes.length}</span>
 						</div>
 					</div>
 					<p class='mt-2 text-gray-600'>{snippet}</p>

@@ -1,5 +1,5 @@
 import { Handlers } from '$fresh/server.ts'
-import BlogPostInfoService from '../../../../service/blog-post-infos.ts'
+import BlogPostInfoService from '../../../../../service/blog-post-infos.ts'
 import { State } from '../../_middleware.ts'
 
 export const handler: Handlers<void, State> = {
@@ -9,9 +9,9 @@ export const handler: Handlers<void, State> = {
 
 		const blogPostInfoService = new BlogPostInfoService()
 
-		await blogPostInfoService.addLike(id, userId)
+		const likesCount = await blogPostInfoService.addLike(id, userId)
 
-		return new Response(null, {
+		return new Response(JSON.stringify({ likesCount }), {
 			status: 200,
 		})
 	},

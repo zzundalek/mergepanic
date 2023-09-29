@@ -1,6 +1,6 @@
 import { MiddlewareHandlerContext } from '$fresh/server.ts'
-import { HttpError } from '../../utils/http-error.ts'
-import jwt, { UserInfo } from '../../utils/jwt.ts'
+import { HttpError } from '../../../utils/http-error.ts'
+import jwt, { UserInfo } from '../../../utils/jwt.ts'
 
 export interface State {
 	userInfo: UserInfo

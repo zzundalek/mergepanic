@@ -48,6 +48,7 @@ abstract class Dao<T> {
 		return id
 	}
 
+	// TODO THIS IS A HUGE BUG need to me fixed (never reloads... only try to save)
 	/** Commits transaction to the Deno KV. @throws {Error} on failure. */
 	public async commit(
 		atomicOperation: Deno.AtomicOperation,

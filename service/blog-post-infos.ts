@@ -58,7 +58,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 	}
 
 	/** Add a like by @userId to a blog post specified by @userId . @throws {HttpError | Error} on failure.  */
-	public async addLike(blogPostId: string, userId: string): Promise<void> {
+	public async addLike(blogPostId: string, userId: string): Promise<number> {
 		const blogPostEntry = await this.getBlogPost(blogPostId)
 
 		if (blogPostEntry == null) {
@@ -68,7 +68,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 			}
 
 			await this.createNewBlogPostEntry(newBlogPost)
-			return
+			return 1
 		}
 
 		const blogPost = blogPostEntry.value
@@ -83,10 +83,15 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 
 		await this.commit(updateOperation)
 		console.log(blogPostEntry)
+
+		return updatedLikes.length
 	}
 
 	/** Remove a like by @userId to a blog post specified by @userId . @throws {HttpError | Error} on failure.  */
-	public async removeLike(blogPostId: string, userId: string): Promise<void> {
+	public async removeLike(
+		blogPostId: string,
+		userId: string,
+	): Promise<number> {
 		const blogPostEntry = await this.getBlogPost(blogPostId)
 
 		if (blogPostEntry == null) {
@@ -105,6 +110,8 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 
 		await this.commit(updateOperation)
 		console.log(blogPostEntry)
+
+		return updatedLikes.length
 	}
 }
 
