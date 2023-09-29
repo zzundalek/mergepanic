@@ -1,8 +1,8 @@
 export default function Footer() {
 	return (
-		<>
-			<hr class='h-px mt-10 bg-gray-200 border-0 dark:bg-gray-200' />
-			<div class='bg-white flex flex-col md:flex-row w-full gap-6 md:gap-14 px-8 py-6 text-xs justify-center items-center'>
+		<div class='bg-gradient-to-bl from-gray-900 to-gray-600 bg-gradient-to-r text-white'>
+			<hr class='h-px mt-10 border-0' />
+			<div class='flex flex-col md:flex-row w-full gap-6 md:gap-14 px-8 py-6 text-xs justify-center items-center'>
 				<div>
 					<a href='https://fresh.deno.dev'>
 						<img
@@ -27,6 +27,6 @@ export default function Footer() {
 					All right reserved.
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }

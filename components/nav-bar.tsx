@@ -1,6 +1,6 @@
 export function NavBar() {
 	return (
-		<>
+		<div class='bg-gradient-to-b from-gray-200 to-white'>
 			<div class='flex flex-row items-center justify-between max-w-screen-md mx-auto'>
 				<a href='/'>
 					<img
@@ -18,7 +18,6 @@ export function NavBar() {
 					</li>
 				</ul>
 			</div>
-			<hr class='h-px mt-1 bg-gray-200 border-0 dark:bg-gray-200' />
-		</>
+		</div>
 	)
 }
