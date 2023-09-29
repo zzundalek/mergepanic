@@ -1,4 +1,5 @@
 import { Handlers, PageProps } from '$fresh/server.ts'
+import TweetButton from '../../components/TweetButton.tsx'
 import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
 
 import * as gfm from 'gfm'
@@ -49,6 +50,10 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 							&nbsp;
 							<span>{post.likes.length}</span>
 						</div>
+						<TweetButton
+							url={props.url.href}
+							text={`Merge Panic: ${post.title}`}
+						/>
 					</div>
 				</div>
 			</div>
