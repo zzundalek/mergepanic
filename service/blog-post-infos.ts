@@ -1,22 +1,27 @@
-import { BlogPost, Like } from '../interfaces/blog-post.ts'
+import { BlogPostInfo, Like } from './blog-posts.ts'
 import { HttpError } from '../utils/http-error.ts'
-import { doesPostExist } from '../utils/post.ts'
+import ArticlesService from './articles.ts' // TODO need to extracted and moved to a service
 import Dao from './dao.ts'
 
-class BlogPostService extends Dao<BlogPost> {
+class BlogPostInfoService extends Dao<BlogPostInfo> {
 	constructor() {
 		super('blogPosts')
 	}
 
 	public async getBlogPost(
 		blogPostId: string,
-	): Promise<Deno.KvEntry<BlogPost> | null> {
+	): Promise<Deno.KvEntry<BlogPostInfo> | null> {
 		return await super.getEntry(blogPostId)
+	}
+
+	public async getDetail(blogPostId: string): Promise<BlogPostInfo | null> {
+		const blogPost = await this.getBlogPost(blogPostId)
+		return blogPost?.value ?? null
 	}
 
 	public async setBlogPost(
 		blogPostId: string,
-		blogPost: BlogPost,
+		blogPost: BlogPostInfo,
 	): Promise<string | null> {
 		return await super.setEntry(blogPostId, blogPost)
 	}
@@ -34,11 +39,14 @@ class BlogPostService extends Dao<BlogPost> {
 
 	/** Create a blog post entry if corresponding md file exists, @throws {HttpError | Error} on failure.  */
 	public async createNewBlogPostEntry(
-		blogPost: BlogPost,
+		blogPost: BlogPostInfo,
 	): Promise<void> {
 		const blogPostId = blogPost.id
 
-		const doesBlogPostArticleExists = await doesPostExist(blogPostId)
+		const doesBlogPostArticleExists = await ArticlesService
+			.doesArticleExist(
+				blogPostId,
+			)
 		if (!doesBlogPostArticleExists) {
 			throw new HttpError(
 				404,
@@ -54,7 +62,7 @@ class BlogPostService extends Dao<BlogPost> {
 		const blogPostEntry = await this.getBlogPost(blogPostId)
 
 		if (blogPostEntry == null) {
-			const newBlogPost: BlogPost = {
+			const newBlogPost: BlogPostInfo = {
 				id: blogPostId,
 				likes: [{ userId, ts: Date.now() }],
 			}
@@ -100,4 +108,4 @@ class BlogPostService extends Dao<BlogPost> {
 	}
 }
 
-export default BlogPostService
+export default BlogPostInfoService

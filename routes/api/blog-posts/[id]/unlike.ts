@@ -1,5 +1,5 @@
 import { Handlers } from '$fresh/server.ts'
-import BlogPostService from '../../../../service/blog-post-service.ts'
+import BlogPostInfoService from '../../../../service/blog-post-infos.ts'
 import { State } from '../../_middleware.ts'
 
 export const handler: Handlers<void, State> = {
@@ -7,8 +7,9 @@ export const handler: Handlers<void, State> = {
 		const id = ctx.params.id
 		const userId = ctx.state.userInfo.sub
 
-		const blogPostService = new BlogPostService()
-		await blogPostService.removeLike(id, userId)
+		const blogPostInfoService = new BlogPostInfoService()
+
+		await blogPostInfoService.removeLike(id, userId)
 
 		return new Response(null, {
 			status: 200,

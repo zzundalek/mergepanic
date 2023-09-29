@@ -1,17 +1,11 @@
 import { parse } from 'frontmatter'
 import { exists } from '$std/fs/mod.ts'
+import { Article } from './blog-posts.ts'
 
 const postDirPath = './data/posts'
-interface Post {
-	id: string
-	title: string
-	published: Date
-	snippet: string
-	content: string
-}
 
 /** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} */
-async function loadPost(id: string): Promise<Post | null> {
+async function loadArticle(id: string): Promise<Article | null> {
 	let text: string
 	try {
 		text = await Deno.readTextFile(`${postDirPath}/${id}.md`)
@@ -36,24 +30,28 @@ async function loadPost(id: string): Promise<Post | null> {
 }
 
 /** Returns all blog posts ordered from newest to oldest. @throws {Error} on fail */
-async function listPosts(): Promise<Post[]> {
-	const promises = []
+async function listArticles(): Promise<Article[]> {
+	const articlePromises = []
+
 	for await (const file of Deno.readDir(postDirPath)) {
 		const id = file.name.slice(0, -3)
-		promises.push(loadPost(id))
+		articlePromises.push(loadArticle(id))
 	}
 
-	const posts = await Promise.all(promises) as Post[]
-	posts.sort((a, b) => b.published.getTime() - a.published.getTime())
+	const articles = (await Promise.all(articlePromises)).flatMap((
+		nullableArticle,
+	) => nullableArticle != null ? [nullableArticle] : [])
 
-	return posts
+	articles.sort((a, b) => b.published.getTime() - a.published.getTime())
+
+	return articles
 }
 
-async function doesPostExist(id: string): Promise<boolean> {
+async function doesArticleExist(id: string): Promise<boolean> {
 	return await exists(`${postDirPath}/${id}.md`, {
 		isReadable: true,
 		isFile: true,
 	})
 }
 
-export { doesPostExist, listPosts, loadPost, type Post }
+export default { doesArticleExist, listArticles, loadArticle }

@@ -1,15 +1,15 @@
-import { listPosts, Post } from '../utils/post.ts'
 import { Handlers, PageProps } from '$fresh/server.ts'
 import PostEntry from '../components/PostEntry.tsx'
+import BlogPostService, { BlogPost } from '../service/blog-posts.ts'
 
-export const handler: Handlers<Post[]> = {
+export const handler: Handlers<BlogPost[]> = {
 	async GET(_req, ctx) {
-		const posts = await listPosts()
+		const posts = await BlogPostService.listPosts()
 		return ctx.render(posts)
 	},
 }
 
-export default function Home(props: PageProps<Post[]>) {
+export default function Home(props: PageProps<BlogPost[]>) {
 	const posts = props.data
 	return (
 		<>
