@@ -112,24 +112,17 @@ export default function PostLike(props: PostLikesProps) {
 		}
 	}, [])
 
-	// TODO can be improved?
-	return post.value.liked
-		? (
-			<div class='text-blue-600 hover:cursor-pointer select-none'>
-				<div onClick={() => setIsToggleLikeRequested(true)}>
-					<i class='fa-regular fa-thumbs-up'></i>
-					&nbsp;
-					<span>{post.value.likesCount}</span>
-				</div>
+	return (
+		<div
+			class={`${
+				post.value.liked ? 'text-blue-600' : 'text-gray-400'
+			} hover:cursor-pointer hover:text-blue-600 select-none`}
+		>
+			<div onClick={() => setIsToggleLikeRequested(true)}>
+				<i class='fa-regular fa-thumbs-up'></i>
+				&nbsp;
+				<span>{post.value.likesCount}</span>
 			</div>
-		)
-		: (
-			<div class='text-gray-400 hover:cursor-pointer select-none'>
-				<div onClick={() => setIsToggleLikeRequested(true)}>
-					<i class='fa-regular fa-thumbs-up'></i>
-					&nbsp;
-					<span>{post.value.likesCount}</span>
-				</div>
-			</div>
-		)
+		</div>
+	)
 }
