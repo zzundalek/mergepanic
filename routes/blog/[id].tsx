@@ -34,11 +34,11 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 
 	return (
 		<>
-			<div class='px-4 mx-auto max-w-screen-md grid gap-6'>
-				<style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
+			<style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
+			<div class='px-4 mx-auto max-w-screen-md flex flex-col gap-2'>
+				<h1 class='text-4xl'>{post.title}</h1>
 				<div>
-					<h1 class='text-4xl mt-4'>{post.title}</h1>
-					<div class='text-gray-400 text-base mb-4 mt-2 flex flex-row gap-3'>
+					<div class='text-gray-400 text-base flex flex-row gap-3'>
 						<div>
 							<i class='fa-regular fa-calendar'></i>
 							&nbsp;

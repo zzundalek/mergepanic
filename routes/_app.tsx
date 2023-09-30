@@ -34,7 +34,9 @@ export default function App({ Component }: AppProps) {
 			</head>
 			<body class='flex flex-col min-h-screen'>
 				<NavBar />
-				<Component />
+				<div class='my-8'>
+					<Component />
+				</div>
 				<Footer />
 			</body>
 		</html>
