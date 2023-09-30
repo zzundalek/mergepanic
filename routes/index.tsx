@@ -18,7 +18,7 @@ export default function Home(props: PageProps<BlogPost[]>) {
 					Merge Panic&nbsp;- dev, hiking and usuals
 				</h1>
 			</div>
-			<div class='px-4 mt-10 mx-auto max-w-screen-md'>
+			<div class='px-4 mx-auto max-w-screen-md'>
 				<ul role='list' class='divide-y divide-gray-200'>
 					{posts.map((post) => PostEntry({ post }))}
 				</ul>
