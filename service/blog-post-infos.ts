@@ -11,7 +11,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 	public async getBlogPost(
 		blogPostId: string,
 	): Promise<Deno.KvEntry<BlogPostInfo> | null> {
-		return await super.getEntry(blogPostId)
+		return await this.getEntry(blogPostId)
 	}
 
 	public async getDetail(blogPostId: string): Promise<BlogPostInfo | null> {
@@ -23,7 +23,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 		blogPostId: string,
 		blogPost: BlogPostInfo,
 	): Promise<string | null> {
-		return await super.setEntry(blogPostId, blogPost)
+		return await this.setEntry(blogPostId, blogPost)
 	}
 
 	private addUserLike(likes: Like[], userId: string): Like[] {
@@ -59,32 +59,46 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 
 	/** Add a like by @userId to a blog post specified by @userId . @throws {HttpError | Error} on failure.  */
 	public async addLike(blogPostId: string, userId: string): Promise<number> {
-		const blogPostEntry = await this.getBlogPost(blogPostId)
+		for (
+			let triesCount = 0;
+			triesCount < this.maxNumberOfCommitTries;
+			triesCount++
+		) {
+			try {
+				const blogPostEntry = await this.getBlogPost(blogPostId)
 
-		if (blogPostEntry == null) {
-			const newBlogPost: BlogPostInfo = {
-				id: blogPostId,
-				likes: [{ userId, ts: Date.now() }],
+				if (blogPostEntry == null) {
+					const newBlogPost: BlogPostInfo = {
+						id: blogPostId,
+						likes: [{ userId, ts: Date.now() }],
+					}
+
+					await this.createNewBlogPostEntry(newBlogPost)
+					console.log(blogPostEntry)
+
+					return 1
+				}
+
+				const blogPost = blogPostEntry.value
+				const updatedLikes = this.addUserLike(blogPost.likes, userId)
+
+				blogPost.likes = updatedLikes
+
+				await this.getKv()
+					.atomic()
+					.check(blogPostEntry) // Ensure the blog post data hasn't changed
+					.set(this.getEntryKey(blogPostId), blogPost) // Update the post data
+					.commit()
+
+				console.log(blogPostEntry)
+
+				return updatedLikes.length
+			} catch (error) {
+				console.warn(`Failed to add like to a blog post ${blogPostId}.`, error)
 			}
-
-			await this.createNewBlogPostEntry(newBlogPost)
-			return 1
 		}
 
-		const blogPost = blogPostEntry.value
-		const updatedLikes = this.addUserLike(blogPost.likes, userId)
-
-		blogPost.likes = updatedLikes
-
-		const updateOperation = this.getKv()
-			.atomic()
-			.check(blogPostEntry) // Ensure the blog post data hasn't changed
-			.set(this.getEntryKey(blogPostId), blogPost) // Update the post data
-
-		await this.commit(updateOperation)
-		console.log(blogPostEntry)
-
-		return updatedLikes.length
+		throw new Error('Max tries reached for KV commit')
 	}
 
 	/** Remove a like by @userId to a blog post specified by @userId . @throws {HttpError | Error} on failure.  */
@@ -92,26 +106,38 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 		blogPostId: string,
 		userId: string,
 	): Promise<number> {
-		const blogPostEntry = await this.getBlogPost(blogPostId)
+		for (
+			let triesCount = 0;
+			triesCount < this.maxNumberOfCommitTries;
+			triesCount++
+		) {
+			try {
+				const blogPostEntry = await this.getBlogPost(blogPostId)
 
-		if (blogPostEntry == null) {
-			throw new HttpError(404, `No blog post found for ID ${blogPostId}`)
+				if (blogPostEntry == null) {
+					throw new HttpError(404, `No blog post found for ID ${blogPostId}`)
+				}
+
+				const blogPost = blogPostEntry.value
+				const updatedLikes = this.removeUserLike(blogPost.likes, userId)
+
+				blogPost.likes = updatedLikes
+
+				await this.getKv()
+					.atomic()
+					.check(blogPostEntry) // Ensure the blog post data hasn't changed
+					.set(this.getEntryKey(blogPostId), blogPost) // Update the post data
+					.commit()
+
+				console.log(blogPostEntry)
+
+				return updatedLikes.length
+			} catch (error) {
+				console.warn(`Failed to unlike to a blog post ${blogPostId}.`, error)
+			}
 		}
 
-		const blogPost = blogPostEntry.value
-		const updatedLikes = this.removeUserLike(blogPost.likes, userId)
-
-		blogPost.likes = updatedLikes
-
-		const updateOperation = this.getKv()
-			.atomic()
-			.check(blogPostEntry) // Ensure the blog post data hasn't changed
-			.set(this.getEntryKey(blogPostId), blogPost) // Update the post data
-
-		await this.commit(updateOperation)
-		console.log(blogPostEntry)
-
-		return updatedLikes.length
+		throw new Error('Max tries reached for KV commit')
 	}
 }
 

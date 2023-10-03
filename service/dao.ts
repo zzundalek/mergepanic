@@ -3,7 +3,7 @@ const kv = await Deno.openKv()
 
 abstract class Dao<T> {
 	private readonly key: string
-	private readonly maxNumberOfCommitTries = 10
+	protected readonly maxNumberOfCommitTries = 10
 
 	constructor(key: string) {
 		this.key = key
@@ -46,22 +46,6 @@ abstract class Dao<T> {
 		console.info(`Successfull set entry for [${entryKey}]`, entryValue)
 
 		return id
-	}
-
-	// TODO THIS IS A HUGE BUG need to me fixed (never reloads... only try to save)
-	/** Commits transaction to the Deno KV. @throws {Error} on failure. */
-	public async commit(
-		atomicOperation: Deno.AtomicOperation,
-	): Promise<void> {
-		let tries = 0
-		let res = { ok: false }
-		while (!res.ok) {
-			if (tries >= this.maxNumberOfCommitTries) {
-				throw new Error('Max tries reached for KV commit')
-			}
-			res = await atomicOperation.commit()
-			tries++
-		}
 	}
 }
 
