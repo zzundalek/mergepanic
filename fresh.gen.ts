@@ -4,17 +4,30 @@
 
 import * as $0 from './routes/_404.tsx'
 import * as $1 from './routes/_app.tsx'
-import * as $2 from './routes/blog/[id].tsx'
-import * as $3 from './routes/index.tsx'
+import * as $2 from './routes/api/auth/login.ts'
+import * as $3 from './routes/api/user/_middleware.ts'
+import * as $4 from './routes/api/user/blog-posts/[id]/like.ts'
+import * as $5 from './routes/api/user/blog-posts/[id]/unlike.ts'
+import * as $6 from './routes/blog/[id].tsx'
+import * as $7 from './routes/index.tsx'
+import * as $$0 from './islands/auth.tsx'
+import * as $$1 from './islands/post-like.tsx'
 
 const manifest = {
 	routes: {
 		'./routes/_404.tsx': $0,
 		'./routes/_app.tsx': $1,
-		'./routes/blog/[id].tsx': $2,
-		'./routes/index.tsx': $3,
+		'./routes/api/auth/login.ts': $2,
+		'./routes/api/user/_middleware.ts': $3,
+		'./routes/api/user/blog-posts/[id]/like.ts': $4,
+		'./routes/api/user/blog-posts/[id]/unlike.ts': $5,
+		'./routes/blog/[id].tsx': $6,
+		'./routes/index.tsx': $7,
 	},
-	islands: {},
+	islands: {
+		'./islands/auth.tsx': $$0,
+		'./islands/post-like.tsx': $$1,
+	},
 	baseUrl: import.meta.url,
 }
 

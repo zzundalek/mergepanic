@@ -1,36 +1,68 @@
 import { Handlers, PageProps } from '$fresh/server.ts'
-import { loadPost, Post } from '../../utils/post.ts'
+import { useSignal } from '@preact/signals'
+import TweetButton from '../../components/tweet-button.tsx'
+import PostLike from '../../islands/post-like.tsx'
+import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
+import frontEndGlobals from '../../utils/front-end-globals.ts'
+
 import * as gfm from 'gfm'
 
-export const handler: Handlers = {
+export const handler: Handlers<BlogPost> = {
 	async GET(_req, ctx) {
 		const id = ctx.params.id
-		const post = await loadPost(id)
-		if (post == null) {
+
+		const blogPost = await BlogPostService.loadPost(id)
+
+		if (blogPost == null) {
 			return ctx.renderNotFound()
 		}
-		return ctx.render(post)
+
+		return ctx.render(blogPost)
 	},
 }
 
-export default function BlogPostPage(props: PageProps<Post>) {
+export default function BlogPostPage(props: PageProps<BlogPost>) {
 	const post = props.data
 	const html = gfm.render(post.content)
+
+	// TODO can be may extracted to global state ?
+	const postSignal = useSignal({
+		id: post.id,
+		likesCount: post.likes.length,
+		liked: false,
+	})
+
 	return (
 		<>
-			<div class='px-4 mx-auto max-w-screen-md grid gap-6'>
-				<style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
+			<style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
+			<div class='px-4 mx-auto max-w-screen-md flex flex-col gap-2'>
+				<h1 class='text-4xl'>{post.title}</h1>
 				<div>
-					<h1 class='text-4xl mt-2'>{post.title}</h1>
-					<p class='text-gray-400 text-base mb-4 mt-2'>
-						<i class='fa-regular fa-calendar'></i>
-						&nbsp;
-						{post.published.toLocaleDateString()}
-					</p>
+					<div class='text-gray-400 text-base flex flex-row gap-3'>
+						<div>
+							<i class='fa-regular fa-calendar'></i>
+							&nbsp;
+							<span>{post.published.toLocaleDateString()}</span>
+						</div>
+						<PostLike
+							post={postSignal}
+							frontEndGlobals={frontEndGlobals}
+						/>
+					</div>
 					<div
 						class='mt-6 markdown-body'
 						dangerouslySetInnerHTML={{ __html: html }}
 					>
+					</div>
+					<div class='text-gray-400 text-base mt-6 flex flex-row-reverse gap-3'>
+						<PostLike
+							post={postSignal}
+							frontEndGlobals={frontEndGlobals}
+						/>
+						<TweetButton
+							url={props.url.href}
+							text={`Merge Panic: ${post.title}`}
+						/>
 					</div>
 				</div>
 			</div>

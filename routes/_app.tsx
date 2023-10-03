@@ -1,7 +1,9 @@
 import { AppProps } from '$fresh/server.ts'
-import Footer from '../components/Footer.tsx'
-import { NavBar } from '../components/NavBar.tsx'
-import { Ogp } from '../components/Ogp.tsx'
+import Footer from '../components/footer.tsx'
+import { NavBar } from '../components/nav-bar.tsx'
+import { Ogp } from '../components/ogp.tsx'
+import Auth from '../islands/auth.tsx'
+import FrontEndGlobals from '../utils/front-end-globals.ts'
 
 export default function App({ Component }: AppProps) {
 	return (
@@ -28,10 +30,13 @@ export default function App({ Component }: AppProps) {
 					crossOrigin='anonymous'
 				/>
 				<Ogp />
+				<Auth frontEndGlobals={FrontEndGlobals} />
 			</head>
-			<body>
+			<body class='flex flex-col min-h-screen'>
 				<NavBar />
-				<Component />
+				<div class='my-8'>
+					<Component />
+				</div>
 				<Footer />
 			</body>
 		</html>
