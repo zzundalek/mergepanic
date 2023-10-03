@@ -2,7 +2,7 @@ import { Signal } from '@preact/signals'
 import { useEffect, useState } from 'preact/hooks'
 import { FrontEndGlobals } from '../utils/front-end-globals.ts'
 import { IS_BROWSER } from '$fresh/runtime.ts'
-import { auth } from '../utils/auth.ts'
+import BackEndGlobals from '../utils/back-end-globals.ts'
 
 interface PostLikes {
 	id: string
@@ -46,7 +46,7 @@ export default function PostLike(props: PostLikesProps) {
 				{
 					method: 'PUT',
 					headers: {
-						Authorization: `Bearer ${auth.value?.token ?? ''}`, // TODO NEED fix
+						Authorization: `Bearer ${BackEndGlobals.JWT_SECRET}`,
 					},
 				},
 			)
