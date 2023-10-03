@@ -40,13 +40,19 @@ export default function PostLike(props: PostLikesProps) {
 		 * @returns the `token`
 		 */
 		async function toggleLike(operation: LikeOperation) {
+			const token = auth.value?.token
+
+			if (token == null) {
+				throw new Error('Failed to obtain token from auth.')
+			}
+
 			const response = await fetch(
 				// deno-fmt-ignore
 				`${SERVER_URL}/api/user/blog-posts/${post.value.id}/${operation}`,
 				{
 					method: 'PUT',
 					headers: {
-						Authorization: `Bearer ${auth.value?.token ?? ''}`, // TODO NEED fix
+						Authorization: `Bearer ${token}`,
 					},
 				},
 			)
