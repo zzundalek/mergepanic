@@ -38,7 +38,7 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 			<div class='px-4 mx-auto max-w-screen-md flex flex-col gap-2'>
 				<h1 class='text-4xl'>{post.title}</h1>
 				<div>
-					<div class='text-gray-400 text-base flex flex-row gap-3'>
+					<div class='text-neutral dark:text-neutral_dark flex flex-row gap-3'>
 						<div>
 							<i class='fa-regular fa-calendar'></i>
 							&nbsp;
@@ -50,11 +50,11 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 						/>
 					</div>
 					<div
-						class='mt-6 markdown-body'
+						class='mt-6 markdown-body !text-black !dark:text-white !bg-canvas !dark:bg-canvas_dark'
 						dangerouslySetInnerHTML={{ __html: html }}
 					>
 					</div>
-					<div class='text-gray-400 text-base mt-6 flex flex-row-reverse gap-3'>
+					<div class='mt-6 flex flex-row-reverse gap-3'>
 						<PostLike
 							post={postSignal}
 							frontEndGlobals={frontEndGlobals}

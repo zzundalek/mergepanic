@@ -32,7 +32,7 @@ export default function App({ Component }: AppProps) {
 				<Ogp />
 				<Auth frontEndGlobals={FrontEndGlobals} />
 			</head>
-			<body class='flex flex-col min-h-screen'>
+			<body class='flex flex-col min-h-screen bg-canvas dark:bg-canvas_dark text-black dark:text-white'>
 				<NavBar />
 				<div class='my-8'>
 					<Component />
