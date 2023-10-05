@@ -1,6 +1,6 @@
 export function NavBar() {
 	return (
-		<div class='bg-gradient-to-b from-gray-200 to-white'>
+		<div class='bg-gradient-to-b from-canvas_gradient to-canvas dark:from-canvas_gradient_dark dark:to-canvas_dark'>
 			<div class='flex flex-row items-center justify-between max-w-screen-md mx-auto'>
 				<a href='/'>
 					<img

@@ -3,6 +3,7 @@ import Footer from '../components/footer.tsx'
 import { NavBar } from '../components/nav-bar.tsx'
 import { Ogp } from '../components/ogp.tsx'
 import Auth from '../islands/auth.tsx'
+import Media from '../islands/media.tsx'
 import FrontEndGlobals from '../utils/front-end-globals.ts'
 
 export default function App({ Component }: AppProps) {
@@ -31,8 +32,9 @@ export default function App({ Component }: AppProps) {
 				/>
 				<Ogp />
 				<Auth frontEndGlobals={FrontEndGlobals} />
+				<Media />
 			</head>
-			<body class='flex flex-col min-h-screen'>
+			<body class='flex flex-col min-h-screen bg-canvas dark:bg-canvas_dark text-black dark:text-white'>
 				<NavBar />
 				<div class='my-8'>
 					<Component />

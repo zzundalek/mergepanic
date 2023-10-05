@@ -1,17 +1,12 @@
+import FreshBadge from '../islands/fresh-badge.tsx'
+
 export default function Footer() {
 	return (
-		<div class='mt-auto bg-gradient-to-bl from-gray-900 to-gray-600 bg-gradient-to-r text-white'>
+		<div class='mt-auto bg-gradient-to-b from-canvas to-canvas_gradient dark:from-canvas_dark dark:to-canvas_gradient_dark'>
 			<hr class='h-px mt-10 border-0' />
 			<div class='flex flex-col md:flex-row w-full gap-6 md:gap-14 px-8 py-6 text-xs justify-center items-center'>
 				<div>
-					<a href='https://fresh.deno.dev'>
-						<img
-							width='197'
-							height='37'
-							src='https://fresh.deno.dev/fresh-badge.svg'
-							alt='Made with Fresh'
-						/>
-					</a>
+					<FreshBadge />
 				</div>
 				<div>
 					Logo made by&nbsp;

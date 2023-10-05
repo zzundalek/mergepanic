@@ -2,7 +2,7 @@ import { Signal } from '@preact/signals'
 import { useEffect, useState } from 'preact/hooks'
 import { FrontEndGlobals } from '../utils/front-end-globals.ts'
 import { IS_BROWSER } from '$fresh/runtime.ts'
-import { auth } from '../utils/auth.ts'
+import { auth } from '../utils/signals/auth.ts'
 
 interface PostLikes {
 	id: string
@@ -121,8 +121,10 @@ export default function PostLike(props: PostLikesProps) {
 	return (
 		<div
 			class={`${
-				post.value.liked ? 'text-blue-600' : 'text-gray-400'
-			} hover:cursor-pointer hover:text-blue-600 select-none`}
+				post.value.liked
+					? 'text-secondary dark:text-secondary_dark'
+					: 'text-neutral dark:text-neutral_dark'
+			} hover:cursor-pointer hover:text-secondary hover:dark:text-secondary_dark select-none`}
 		>
 			<div onClick={() => setIsToggleLikeRequested(true)}>
 				<i class='fa-regular fa-thumbs-up'></i>

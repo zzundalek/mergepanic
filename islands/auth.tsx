@@ -1,7 +1,7 @@
 import { useEffect } from 'preact/hooks'
 import { FrontEndGlobals } from '../utils/front-end-globals.ts'
 import { IS_BROWSER } from '$fresh/runtime.ts'
-import { auth } from '../utils/auth.ts'
+import { auth } from '../utils/signals/auth.ts'
 
 interface Props {
 	frontEndGlobals: FrontEndGlobals
