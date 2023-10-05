@@ -23,6 +23,15 @@ export default {
 				'canvas_gradient': '#e5e7eb',
 				'canvas_gradient_dark': '#242323',
 			},
+			animation: {
+				'fadeIn': 'fadeIn 2s ease-in',
+			},
+			keyframes: {
+				fadeIn: {
+					'0%': { opacity: 0 },
+					'100%': { opacity: 1 },
+				},
+			},
 		},
 	},
 } as Options
