@@ -11,10 +11,10 @@ export function NavBar() {
 				</a>
 				<ul class='mx-5 gap-10 flex flex-row items-center'>
 					<li>
-						<a href='/'>Blog</a>
+						<a href='/' class='hover:underline'>Blog</a>
 					</li>
 					<li>
-						<a href='/'>About me</a>
+						<a href='/' class='hover:underline'>About me</a>
 					</li>
 				</ul>
 			</div>

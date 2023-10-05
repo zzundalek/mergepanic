@@ -124,7 +124,7 @@ export default function PostLike(props: PostLikesProps) {
 				post.value.liked
 					? 'text-secondary dark:text-secondary_dark'
 					: 'text-neutral dark:text-neutral_dark'
-			} hover:cursor-pointer hover:text-secondary hover:dark:text-secondary_dark select-none`}
+			} hover:cursor-pointer hover:scale-125 ease-in-out select-none`}
 		>
 			<div onClick={() => setIsToggleLikeRequested(true)}>
 				<i class='fa-regular fa-thumbs-up'></i>
