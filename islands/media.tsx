@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks'
 import { IS_BROWSER } from '$fresh/runtime.ts'
-import { media } from '../utils/media.ts'
+import { media } from '../utils/signals/media.ts'
 
 /**
  * Keeps `media` signal value updated

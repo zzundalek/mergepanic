@@ -1,4 +1,4 @@
-import { media } from '../utils/media.ts'
+import { media } from '../utils/signals/media.ts'
 
 /**
  * Displays a Fresh badge variant (light/dark).
