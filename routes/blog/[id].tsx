@@ -21,11 +21,13 @@ export const handler: Handlers<BlogPost> = {
 	},
 }
 
+/** Blog post page */
 export default function BlogPostPage(props: PageProps<BlogPost>) {
 	const post = props.data
 	const html = gfm.render(post.content)
 
-	// TODO can be may extracted to global state ?
+	// ? can be may extracted to global state ?
+	/** Post state */
 	const postSignal = useSignal({
 		id: post.id,
 		likesCount: post.likes.length,

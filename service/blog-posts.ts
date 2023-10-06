@@ -1,6 +1,9 @@
+/**
+ * Service agregates Articles (invariable data) and Blog post info (variable data)
+ */
+
 import ArticleService from './articles.ts'
 import BlogPostInfoService from './blog-post-infos.ts'
-
 interface BlogPost {
 	id: string
 	title: string
@@ -51,6 +54,7 @@ async function listPosts(): Promise<BlogPost[]> {
 	)
 }
 
+/** Agregates and returns data from `blogPostInfo` and `article`.  */
 function consolidatePost(
 	article: Article,
 	blogPostInfo: BlogPostInfo | null,

@@ -1,22 +1,27 @@
-// TODO extract
+// ? Extract
 const kv = await Deno.openKv()
 
+/** Abstract class for DenoKv */
 abstract class Dao<T> {
 	private readonly key: string
 	protected readonly maxNumberOfCommitTries = 10
 
+	/** Sets the `key` space. */
 	constructor(key: string) {
 		this.key = key
 	}
 
+	/** Returns the database connection */
 	public getKv(): Deno.Kv {
 		return kv
 	}
 
+	/** Returns `Deno.KvKey` based on `key space` and entry `id` */
 	public getEntryKey(id: string): Deno.KvKey {
 		return [this.key, id]
 	}
 
+	/** Returns an entry for `id` if exists otherwise returns null. */
 	public async getEntry(id: string): Promise<Deno.KvEntry<T> | null> {
 		const entryKey = [this.key, id]
 

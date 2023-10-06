@@ -1,3 +1,10 @@
+/**
+ * Service to work with Blog posts info
+ *
+ * Blog post info is an object containg variable data about blog post
+ * i.e. Likes, comments etc.
+ */
+
 import { BlogPostInfo, Like } from './blog-posts.ts'
 import { HttpError } from '../utils/http-error.ts'
 import ArticlesService from './articles.ts' // TODO need to extracted and moved to a service
@@ -8,17 +15,20 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 		super('blogPosts')
 	}
 
+	/** Get post by `blogPostId` if existes otherwise returns null */
 	public async getBlogPost(
 		blogPostId: string,
 	): Promise<Deno.KvEntry<BlogPostInfo> | null> {
 		return await this.getEntry(blogPostId)
 	}
 
+	/** Returns only detail of the blog post */
 	public async getDetail(blogPostId: string): Promise<BlogPostInfo | null> {
 		const blogPost = await this.getBlogPost(blogPostId)
 		return blogPost?.value ?? null
 	}
 
+	/** Upserts the blog post. */
 	public async setBlogPost(
 		blogPostId: string,
 		blogPost: BlogPostInfo,
@@ -26,6 +36,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 		return await this.setEntry(blogPostId, blogPost)
 	}
 
+	/** Add a like by `userId` to `likes` array if not exists and returns it. */
 	private addUserLike(likes: Like[], userId: string): Like[] {
 		if (likes.findIndex((like) => like.userId === userId) !== -1) {
 			return [...likes]
@@ -33,6 +44,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 		return [...likes, { userId, ts: Date.now() }]
 	}
 
+	/** Removes a like by `userId` from `likes` array and returns it. */
 	private removeUserLike(likes: Like[], userId: string): Like[] {
 		return likes.filter((like) => like.userId !== userId)
 	}
