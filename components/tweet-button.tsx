@@ -3,6 +3,7 @@ interface TweetButton {
 	text: string
 }
 
+/** Tweet button */
 export default function TweetButton(props: TweetButton) {
 	const { url, text } = props
 

@@ -1,5 +1,6 @@
 import { Head } from '$fresh/runtime.ts'
 
+/** Page not found erorr page */
 export default function Error404() {
 	return (
 		<>

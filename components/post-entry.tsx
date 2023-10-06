@@ -1,5 +1,6 @@
 import { BlogPost } from '../service/blog-posts.ts'
 
+/** Blog post card */
 export default function PostEntry(props: { post: BlogPost }) {
 	const { id, title, snippet, published, likes } = props.post
 	return (

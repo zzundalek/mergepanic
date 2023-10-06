@@ -6,6 +6,7 @@ import Auth from '../islands/auth.tsx'
 import Media from '../islands/media.tsx'
 import FrontEndGlobals from '../utils/front-end-globals.ts'
 
+/** App component */
 export default function App({ Component }: AppProps) {
 	return (
 		<html>

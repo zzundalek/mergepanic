@@ -1,3 +1,9 @@
+/**
+ * Service to work with Articles
+ *
+ * Article is invariable object with text written in markdown
+ * and metadata containing title, snipped etc.
+ */
 import { parse } from 'frontmatter'
 import { exists } from '$std/fs/mod.ts'
 import { Article } from './blog-posts.ts'
@@ -47,6 +53,7 @@ async function listArticles(): Promise<Article[]> {
 	return articles
 }
 
+/** Return true if article with `id` exists otherwise returns false.  */
 async function doesArticleExist(id: string): Promise<boolean> {
 	return await exists(`${postDirPath}/${id}.md`, {
 		isReadable: true,

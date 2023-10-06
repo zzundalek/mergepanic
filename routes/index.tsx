@@ -9,6 +9,7 @@ export const handler: Handlers<BlogPost[]> = {
 	},
 }
 
+/** Home page */
 export default function Home(props: PageProps<BlogPost[]>) {
 	const posts = props.data
 	return (
