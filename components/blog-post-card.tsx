@@ -1,4 +1,3 @@
-import Badge from './badges/badge.tsx'
 import { BlogPost } from '../service/blog-posts.ts'
 import Badges from './badges/badges.tsx'
 

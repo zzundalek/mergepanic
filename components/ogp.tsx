@@ -1,41 +1,60 @@
-export function Ogp() {
+const mergePanicUrl = 'http://mergepanic.com'
+const defaultThumbnailPath = 'logo.png'
+
+interface OgpProps {
+	title: string
+	description: string
+	pagePath: string
+	thumbnailPath?: string
+}
+const defaultOgp = {
+	title: 'MergePanic - Dev, hiking and usuals',
+	description: 'Geekish blog about dev, hiking and usuals.',
+	pagePath: '/',
+}
+
+export { defaultOgp, type OgpProps }
+
+export function Ogp(props: OgpProps) {
+	const { title, description, pagePath } = props
+	const thumbnailPath = props.thumbnailPath ?? defaultThumbnailPath
+
 	return (
 		<>
-			<title>MergePanic - Dev, hiking and usuals</title>
 			<meta
 				name='description'
-				content='Geekish blog about dev, hiking and usuals.'
+				content={description}
 			/>
 
-			<meta property='og:url' content='http://mergepanic.com' />
+			<meta property='og:url' content={`${mergePanicUrl}/${pagePath}`} />
 			<meta property='og:type' content='website' />
 			<meta
 				property='og:title'
-				content='MergePanic - Dev, hiking and usuals'
+				content={title}
 			/>
 			<meta
 				property='og:description'
-				content='Geekish blog about dev, hiking and usuals.'
+				content={description}
 			/>
 			<meta
 				property='og:image'
-				content='http://mergepanic.com/logo.png'
+				content={`${mergePanicUrl}/${thumbnailPath}`}
 			/>
 
 			<meta name='twitter:card' content='summary_large_image' />
-			<meta property='twitter:domain' content='mergepanic.com' />
-			<meta property='twitter:url' content='http://mergepanic.com' />
+			<meta property='twitter:domain' content={mergePanicUrl} />
+			<meta property='twitter:url' content={`${mergePanicUrl}/${pagePath}`} />
 			<meta
 				name='twitter:title'
-				content='MergePanic - Dev, hiking and usuals'
+				content={title}
 			/>
 			<meta
 				name='twitter:description'
-				content='Geekish blog about dev, hiking and usuals.'
+				content={description}
 			/>
 			<meta
 				name='twitter:image'
-				content='http://mergepanic.com/logo.png'
+				content={`${mergePanicUrl}/${thumbnailPath}`}
 			/>
 		</>
 	)
