@@ -1,7 +1,6 @@
 import { AppProps } from '$fresh/server.ts'
 import Footer from '../components/footer.tsx'
 import { NavBar } from '../components/nav-bar.tsx'
-import { Ogp } from '../components/ogp.tsx'
 import Auth from '../islands/auth.tsx'
 import Media from '../islands/media.tsx'
 import FrontEndGlobals from '../utils/front-end-globals.ts'
@@ -16,7 +15,6 @@ export default function App({ Component }: AppProps) {
 					name='viewport'
 					content='width=device-width, initial-scale=1.0'
 				/>
-				<title>Merge Panic</title>
 				<link rel='preconnect' href='https://fonts.googleapis.com' />
 				<link
 					rel='preconnect'
@@ -31,7 +29,6 @@ export default function App({ Component }: AppProps) {
 					src='https://kit.fontawesome.com/921eaf85c7.js'
 					crossOrigin='anonymous'
 				/>
-				<Ogp />
 				<Auth frontEndGlobals={FrontEndGlobals} />
 				<Media />
 			</head>

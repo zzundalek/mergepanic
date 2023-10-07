@@ -7,6 +7,8 @@ import frontEndGlobals from '../../utils/front-end-globals.ts'
 
 import * as gfm from 'gfm'
 import Badges from '../../components/badges/badges.tsx'
+import { Ogp } from '../../components/ogp.tsx'
+import { Head } from '$fresh/runtime.ts'
 
 export const handler: Handlers<BlogPost> = {
 	async GET(_req, ctx) {
@@ -35,8 +37,19 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 		liked: false,
 	})
 
+	const ogp = {
+		title: `MergePanic - ${post.title}`,
+		description: post.snippet,
+		pagePath: `blog/${post.id}`,
+		thumbnailPath: `${post.thumbnail}`,
+	}
+
 	return (
 		<>
+			<Head>
+				<title>{post.title}</title>
+				<Ogp {...ogp}></Ogp>
+			</Head>
 			<style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
 			<div class='px-4 mx-auto max-w-screen-md flex flex-col gap-2'>
 				<h1 class='text-4xl'>{post.title}</h1>

@@ -1,10 +1,12 @@
 import { Head } from '$fresh/runtime.ts'
+import { defaultOgp, Ogp } from '../components/ogp.tsx'
 
 /** Page not found erorr page */
 export default function Error404() {
 	return (
 		<>
 			<Head>
+				<Ogp {...defaultOgp}></Ogp>
 				<title>404 - Page not found</title>
 			</Head>
 			<div class='px-4 py-8 mx-auto bg-[#ffe6b3]'>
