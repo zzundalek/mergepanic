@@ -2,6 +2,8 @@
 title: 'One-Day Adventure: Myōjin gatake (明神ヶ岳)'
 published: 2023-09-22T11:09:29.991Z
 snippet: 'Stepping Back into Nature: My Return to Hiking After Six Months of Silence'
+tags: Hiking
+thumbnail: /0002_hike-myojin-gatake/fuji.jpeg
 ---
 
 **Fun (3/5)** ⭐⭐⭐\
