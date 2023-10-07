@@ -6,6 +6,7 @@ import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
 import frontEndGlobals from '../../utils/front-end-globals.ts'
 
 import * as gfm from 'gfm'
+import Badges from '../../components/badges/badges.tsx'
 
 export const handler: Handlers<BlogPost> = {
 	async GET(_req, ctx) {
@@ -50,6 +51,9 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 							post={postSignal}
 							frontEndGlobals={frontEndGlobals}
 						/>
+					</div>
+					<div class='mt-2'>
+						<Badges badges={post.tags} />
 					</div>
 					<div
 						class='mt-6 markdown-body !text-black !dark:text-white !bg-canvas !dark:bg-canvas_dark'
