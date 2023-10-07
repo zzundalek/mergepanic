@@ -24,7 +24,8 @@ async function loadArticle(id: string): Promise<Article | null> {
 
 	// TODO add types validation
 	const { data, content } = parse(text)
-	const { title, published, snippet } = data as Record<string, string>
+	const { title, published, snippet, tags, thumbnail } = data as Record<string, string>
+	const tagsArray = tags.split(',').map((tag) => tag.trim())
 
 	return {
 		id,
@@ -32,6 +33,8 @@ async function loadArticle(id: string): Promise<Article | null> {
 		published: new Date(published),
 		snippet,
 		content,
+		tags: tagsArray,
+		thumbnail,
 	}
 }
 

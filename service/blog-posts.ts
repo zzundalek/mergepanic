@@ -10,6 +10,8 @@ interface BlogPost {
 	published: Date
 	snippet: string
 	content: string
+	tags: string[]
+	thumbnail?: string
 	likes: Like[]
 }
 
