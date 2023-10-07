@@ -1,7 +1,7 @@
 import { BlogPost } from '../service/blog-posts.ts'
 
 /** Blog post card */
-export default function PostEntry(props: { post: BlogPost }) {
+export default function BlogPostCard(props: { post: BlogPost }) {
 	const { id, title, snippet, published, likes } = props.post
 	return (
 		<li class='py-6 px-4 hover:bg-gray-100 hover:dark:bg-gray-800'>

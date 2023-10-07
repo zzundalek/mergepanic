@@ -1,5 +1,5 @@
 import { Handlers, PageProps } from '$fresh/server.ts'
-import PostEntry from '../components/post-entry.tsx'
+import BlogPostCard from '../components/blog-post-card.tsx'
 import BlogPostService, { BlogPost } from '../service/blog-posts.ts'
 
 export const handler: Handlers<BlogPost[]> = {
@@ -22,7 +22,7 @@ export default function Home(props: PageProps<BlogPost[]>) {
 				</div>
 				<div class='px-4 mx-auto max-w-screen-md'>
 					<ul role='list' class='divide-y divide-gray-200'>
-						{posts.map((post) => PostEntry({ post }))}
+						{posts.map((post) => BlogPostCard({ post }))}
 					</ul>
 				</div>
 			</div>
