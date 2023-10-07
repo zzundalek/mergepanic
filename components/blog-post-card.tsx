@@ -1,5 +1,6 @@
-import Badge from './badge.tsx'
+import Badge from './badges/badge.tsx'
 import { BlogPost } from '../service/blog-posts.ts'
+import Badges from './badges/badges.tsx'
 
 /** Blog post card */
 export default function BlogPostCard(props: { post: BlogPost }) {
@@ -20,9 +21,7 @@ export default function BlogPostCard(props: { post: BlogPost }) {
 					</div>
 				</div>
 				<div>
-					<div class='flex gap-2'>
-						{tags.map((tag) => <Badge title={tag}></Badge>)}
-					</div>
+					<Badges badges={tags} />
 					<div class='mt-4'>
 						<p class='text-neutral dark:text-neutral_dark'>{snippet}</p>
 						<p class='text-primary dark:text-primary_dark'>
