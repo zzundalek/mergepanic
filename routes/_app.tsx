@@ -4,6 +4,10 @@ import { NavBar } from '../components/nav-bar.tsx'
 import Auth from '../islands/auth.tsx'
 import Media from '../islands/media.tsx'
 import FrontEndGlobals from '../utils/front-end-globals.ts'
+import { intitConsole } from '../utils/console.ts'
+import backEndGlobals from '../utils/back-end-globals.ts'
+
+intitConsole(backEndGlobals.ENV)
 
 /** App component */
 export default function App({ Component }: AppProps) {

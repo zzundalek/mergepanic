@@ -12,6 +12,7 @@ Make sure to install Deno: https://deno.land/manual/getting_started/installation
 - `JWT_SECRET` - secret for Json Web Token
 - `GA_ID` - id for Google Analytics
 - `SERVER_URL` - server url for apis (e.g. `http://localhost:8000`)
+- `ENV` - environment (used to setup loging etc) possible values : `dev` | `prod`. Default value is `dev`.
 
 For development, values must be set in `.envrc` file. Than load the values:
 
