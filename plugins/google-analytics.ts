@@ -1,5 +1,5 @@
 import { Plugin } from '$fresh/server.ts'
-import BackendGlobals from '../utils/back-end-globals.ts'
+import { globals } from '../utils/globals.ts'
 
 export default function googleAnalytics(): Plugin {
 	return {
@@ -7,7 +7,7 @@ export default function googleAnalytics(): Plugin {
 		entrypoints: { main: './plugins/google-analytics-main.ts' },
 		render(ctx) {
 			ctx.render()
-			const gaId = BackendGlobals.GA_ID
+			const gaId = globals.GA_ID
 			return gaId != null ? { scripts: [{ entrypoint: 'main', state: gaId }] } : {}
 		},
 	}

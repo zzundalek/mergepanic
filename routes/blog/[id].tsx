@@ -3,7 +3,7 @@ import { useSignal } from '@preact/signals'
 import TweetButton from '../../components/tweet-button.tsx'
 import PostLike from '../../islands/post-like.tsx'
 import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
-import frontEndGlobals from '../../utils/front-end-globals.ts'
+import { globals } from '../../utils/globals.ts'
 
 import * as gfm from 'gfm'
 import Badges from '../../components/badges/badges.tsx'
@@ -62,7 +62,7 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 						</div>
 						<PostLike
 							post={postSignal}
-							frontEndGlobals={frontEndGlobals}
+							serverUrl={globals.SERVER_URL}
 						/>
 					</div>
 					<div class='mt-2'>
@@ -76,7 +76,7 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 					<div class='mt-6 flex flex-row-reverse gap-3'>
 						<PostLike
 							post={postSignal}
-							frontEndGlobals={frontEndGlobals}
+							serverUrl={globals.SERVER_URL}
 						/>
 						<TweetButton
 							url={props.url.href}

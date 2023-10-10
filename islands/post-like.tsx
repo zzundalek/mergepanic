@@ -1,6 +1,5 @@
 import { Signal } from '@preact/signals'
 import { useEffect, useState } from 'preact/hooks'
-import { FrontEndGlobals } from '../utils/front-end-globals.ts'
 import { IS_BROWSER } from '$fresh/runtime.ts'
 import { auth } from '../utils/signals/auth.ts'
 
@@ -12,7 +11,7 @@ interface PostLikes {
 
 interface PostLikesProps {
 	post: Signal<PostLikes>
-	frontEndGlobals: FrontEndGlobals
+	serverUrl: string
 }
 
 type LikeOperation = 'like' | 'unlike'
@@ -22,11 +21,9 @@ export type { PostLikes, PostLikesProps }
 /**
  * Displays number of likes for `post` and higlight like form current user.
  * Allows like / unlike for the user
- *
- * @param props - front end globals for islands, signal object for `post`
  */
 export default function PostLike(props: PostLikesProps) {
-	const { SERVER_URL } = props.frontEndGlobals
+	const { serverUrl } = props
 	const post = props.post
 	const [isRequesting, setIsRequesting] = useState(false)
 	const [isToggleLikeRequested, setIsToggleLikeRequested] = useState(false)
@@ -48,7 +45,7 @@ export default function PostLike(props: PostLikesProps) {
 
 			const response = await fetch(
 				// deno-fmt-ignore
-				`${SERVER_URL}/api/user/blog-posts/${post.value.id}/${operation}`,
+				`${serverUrl}/api/user/blog-posts/${post.value.id}/${operation}`,
 				{
 					method: 'PUT',
 					headers: {
