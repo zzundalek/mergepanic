@@ -3,11 +3,10 @@ import Footer from '../components/footer.tsx'
 import { NavBar } from '../components/nav-bar.tsx'
 import Auth from '../islands/auth.tsx'
 import Media from '../islands/media.tsx'
-import FrontEndGlobals from '../utils/front-end-globals.ts'
 import { intitConsole } from '../utils/console.ts'
-import backEndGlobals from '../utils/back-end-globals.ts'
+import { globals } from '../utils/globals.ts'
 
-intitConsole(backEndGlobals.ENV)
+intitConsole(globals.ENV)
 
 /** App component */
 export default function App({ Component }: AppProps) {
@@ -33,7 +32,7 @@ export default function App({ Component }: AppProps) {
 					src='https://kit.fontawesome.com/921eaf85c7.js'
 					crossOrigin='anonymous'
 				/>
-				<Auth frontEndGlobals={FrontEndGlobals} />
+				<Auth serverUrl={globals.SERVER_URL} />
 				<Media />
 			</head>
 			<body class='flex flex-col min-h-screen bg-canvas dark:bg-canvas_dark text-black dark:text-white'>

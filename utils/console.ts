@@ -1,4 +1,4 @@
-import { Environment } from './back-end-globals.ts'
+import { Environment } from './globals.ts'
 
 /**
  * Set logging depending on

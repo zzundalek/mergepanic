@@ -1,19 +1,14 @@
 import { useEffect } from 'preact/hooks'
-import { FrontEndGlobals } from '../utils/front-end-globals.ts'
 import { IS_BROWSER } from '$fresh/runtime.ts'
 import { auth } from '../utils/signals/auth.ts'
 
 interface Props {
-	frontEndGlobals: FrontEndGlobals
+	serverUrl: string
 }
 
-/**
- * Obtains new auth token from cookies / API if its not set in `auth`.
- *
- * @param props - front end globals for islands
- */
+/** Obtains new auth token from cookies / API if its not set in `auth`. */
 export default function Auth(props: Props) {
-	const { SERVER_URL } = props.frontEndGlobals
+	const { serverUrl } = props
 
 	useEffect(() => {
 		/**
@@ -24,7 +19,7 @@ export default function Auth(props: Props) {
 		 */
 		async function fetchToken(): Promise<string> {
 			const response = await fetch(
-				`${SERVER_URL}/api/auth/login`,
+				`${serverUrl}/api/auth/login`,
 				{
 					method: 'POST',
 				},
