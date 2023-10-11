@@ -1,4 +1,5 @@
 import { Plugin } from '$fresh/server.ts'
+import { globals } from '../utils/globals.ts'
 
 export default function googleAnalytics(): Plugin {
 	return {
@@ -6,14 +7,8 @@ export default function googleAnalytics(): Plugin {
 		entrypoints: { main: './plugins/google-analytics-main.ts' },
 		render(ctx) {
 			ctx.render()
-			const gaId = Deno.env.get('GA_ID')
-			if (gaId == null) {
-				console.error('Failed to obtain Google Analytics ID from ENV!')
-				return {}
-			}
-			return {
-				scripts: [{ entrypoint: 'main', state: gaId }],
-			}
+			const gaId = globals.GA_ID
+			return gaId != null ? { scripts: [{ entrypoint: 'main', state: gaId }] } : {}
 		},
 	}
 }

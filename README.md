@@ -7,7 +7,14 @@ Started" guide here: https://fresh.deno.dev/docs/getting-started
 
 Make sure to install Deno: https://deno.land/manual/getting_started/installation
 
-To make GA work `GA_ID` must be set in `.envrc` file. Than load the GA_ID value:
+#### Environment variables
+
+- `JWT_SECRET` - secret for Json Web Token
+- `GA_ID` - id for Google Analytics
+- `SERVER_URL` - server url for apis (e.g. `http://localhost:8000`)
+- `ENV` - environment (used to setup loging etc) possible values : `dev` | `prod`. Default value is `dev`.
+
+For development, values must be set in `.envrc` file. Than load the values:
 
 ```
 direnv allow && eval "$(direnv hook zsh)"

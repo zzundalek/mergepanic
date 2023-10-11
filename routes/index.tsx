@@ -1,27 +1,35 @@
-import { listPosts, Post } from '../utils/post.ts'
 import { Handlers, PageProps } from '$fresh/server.ts'
-import PostEntry from '../components/PostEntry.tsx'
+import { Head } from '$fresh/runtime.ts'
+import BlogPostCard from '../components/blog-post-card.tsx'
+import BlogPostService, { BlogPost } from '../service/blog-posts.ts'
+import { defaultOgp, Ogp } from '../components/ogp.tsx'
 
-export const handler: Handlers<Post[]> = {
+export const handler: Handlers<BlogPost[]> = {
 	async GET(_req, ctx) {
-		const posts = await listPosts()
+		const posts = await BlogPostService.listPosts()
 		return ctx.render(posts)
 	},
 }
 
-export default function Home(props: PageProps<Post[]>) {
+/** Home page */
+export default function Home(props: PageProps<BlogPost[]>) {
 	const posts = props.data
+
 	return (
 		<>
-			<div class='my-10 px-6 mx-auto max-w-screen-md'>
-				<h1 class='text-6xl text-center font-indie-flower'>
-					Merge Panic&nbsp;- dev, hiking and usuals
-				</h1>
-			</div>
-			<div class='px-4 mt-14 mx-auto max-w-screen-md grid gap-10'>
-				<div>
-					<ul class='grid gap-4'>
-						{posts.map((post) => PostEntry({ post }))}
+			<Head>
+				<title>MergePanic - Dev, hiking and usuals</title>
+				<Ogp {...defaultOgp}></Ogp>
+			</Head>
+			<div class='flex flex-col gap-6'>
+				<div class='md:my-14 px-6 mx-auto max-w-screen-md'>
+					<h1 class='text-6xl text-center font-indie-flower'>
+						Merge Panic&nbsp;- dev, hiking and usuals
+					</h1>
+				</div>
+				<div class='px-4 mx-auto max-w-screen-md'>
+					<ul role='list' class='divide-y divide-gray-200'>
+						{posts.map((post) => BlogPostCard({ post }))}
 					</ul>
 				</div>
 			</div>
