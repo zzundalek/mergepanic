@@ -6,6 +6,11 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
+
+## [1.0.1] - 2023-10-14
+
+| Description | Type | Commit |
+| -- | -- | -- |
 | Fix code sections in dark mode ([#36](https://github.com/zzundalek/mergepanic/pull/36)) | fix | [892b9195270388190e94d86597a8fcb19188da9f](https://github.com/zzundalek/mergepanic/commit/892b9195270388190e94d86597a8fcb19188da9f) |
 
 ## [1.0.0] - 2023-10-11
