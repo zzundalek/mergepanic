@@ -11,6 +11,7 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
+| Fix code sections in dark mode ([#36](https://github.com/zzundalek/mergepanic/pull/36)) | fix | [892b9195270388190e94d86597a8fcb19188da9f](https://github.com/zzundalek/mergepanic/commit/892b9195270388190e94d86597a8fcb19188da9f) |
 | Fresh update to v1.5 ([#32](https://github.com/zzundalek/mergepanic/pull/32)) | feature | [96635a8bdf226a8eb5cfe4ca72f1267785dfad81](https://github.com/zzundalek/mergepanic/commit/96635a8bdf226a8eb5cfe4ca72f1267785dfad81) |
 | Improve logging ([#30](https://github.com/zzundalek/mergepanic/pull/30)) | feature | [a385358ac5bc54a41bcca858ab85d5f3af28f253](https://github.com/zzundalek/mergepanic/commit/a385358ac5bc54a41bcca858ab85d5f3af28f253) |
 | Fix 404 page bg color ([#27](https://github.com/zzundalek/mergepanic/pull/27)) | fix | [96c4c58371af55b704b6a8dbf3219474d6ffa264](https://github.com/zzundalek/mergepanic/commit/96c4c58371af55b704b6a8dbf3219474d6ffa264) |
