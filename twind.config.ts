@@ -18,10 +18,10 @@ export default {
 				'secondary_dark': '#73a6ff',
 
 				'canvas': '#ffffff',
-				'canvas_dark': '#313131',
+				'canvas_dark': '#0d1117', // Set to same color as markdown background for dark mode
 
 				'canvas_gradient': '#e5e7eb',
-				'canvas_gradient_dark': '#242323',
+				'canvas_gradient_dark': '#000000',
 			},
 			animation: {
 				'fadeIn': 'fadeIn 2s ease-in',

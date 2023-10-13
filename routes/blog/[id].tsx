@@ -10,6 +10,9 @@ import Badges from '../../components/badges/badges.tsx'
 import { Ogp } from '../../components/ogp.tsx'
 import { Head } from '$fresh/runtime.ts'
 
+import 'https://esm.sh/prismjs@1.29.0/components/prism-typescript?no-check'
+import 'https://esm.sh/prismjs@1.29.0/components/prism-diff.js?no-check'
+
 export const handler: Handlers<BlogPost> = {
 	async GET(_req, ctx) {
 		const id = ctx.params.id
@@ -69,7 +72,10 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 						<Badges badges={post.tags} />
 					</div>
 					<div
-						class='mt-6 markdown-body !text-black !dark:text-white !bg-canvas !dark:bg-canvas_dark'
+						data-color-mode='auto'
+						data-light-theme='light'
+						data-dark-theme='dark'
+						class='mt-6 markdown-body'
 						dangerouslySetInnerHTML={{ __html: html }}
 					>
 					</div>
