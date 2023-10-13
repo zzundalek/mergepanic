@@ -10,6 +10,9 @@ import Badges from '../../components/badges/badges.tsx'
 import { Ogp } from '../../components/ogp.tsx'
 import { Head } from '$fresh/runtime.ts'
 
+import 'https://esm.sh/prismjs@1.29.0/components/prism-typescript?no-check'
+import 'https://esm.sh/prismjs@1.29.0/components/prism-diff.js?no-check'
+
 export const handler: Handlers<BlogPost> = {
 	async GET(_req, ctx) {
 		const id = ctx.params.id
