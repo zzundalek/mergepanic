@@ -69,7 +69,10 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 						<Badges badges={post.tags} />
 					</div>
 					<div
-						class='mt-6 markdown-body !text-black !dark:text-white !bg-canvas !dark:bg-canvas_dark'
+						data-color-mode='auto'
+						data-light-theme='light'
+						data-dark-theme='dark'
+						class='mt-6 markdown-body'
 						dangerouslySetInnerHTML={{ __html: html }}
 					>
 					</div>
