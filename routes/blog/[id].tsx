@@ -10,8 +10,9 @@ import Badges from '../../components/badges/badges.tsx'
 import { Ogp } from '../../components/ogp.tsx'
 import { Head } from '$fresh/runtime.ts'
 
-import 'prismjs/components/prism-typescript?no-check'
-import 'prismjs/components/prism-diff.js?no-check'
+import 'prismjs/components/prism-typescript.min?no-check'
+import 'prismjs/components/prism-diff.min.js?no-check'
+import 'prismjs/components/prism-bash.min.js?no-check'
 
 export const handler: Handlers<BlogPost> = {
 	async GET(_req, ctx) {
