@@ -58,8 +58,8 @@ async function listPosts(): Promise<BlogPost[]> {
 
 /** Agregates and returns data from `blogPostInfo` and `article`.  */
 function consolidatePost(
-	article: Article,
-	blogPostInfo: BlogPostInfo | null,
+	article: Readonly<Article>,
+	blogPostInfo: Readonly<BlogPostInfo> | null,
 ): BlogPost {
 	if (blogPostInfo == null) {
 		return { ...article, likes: [] }

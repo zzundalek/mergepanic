@@ -38,7 +38,7 @@ abstract class Dao<T> {
 	}
 
 	/** Sets entry to the Deno KV and return its id. Returns null on failure. */
-	public async setEntry(id: string, entryValue: T): Promise<string | null> {
+	public async setEntry(id: string, entryValue: Readonly<T>): Promise<string | null> {
 		const entryKey = [this.key, id]
 
 		console.log(`Setting entry for [${entryKey}]: `, entryValue)
