@@ -5,7 +5,7 @@
  * and metadata containing title, snipped etc.
  */
 import { parse } from 'frontmatter'
-import { exists } from '$std/fs/mod.ts'
+import { exists } from 'std/fs/mod.ts'
 import { Article } from './blog-posts.ts'
 
 const postDirPath = './data/posts'
