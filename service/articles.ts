@@ -7,10 +7,11 @@
 import { parse } from 'frontmatter'
 import { exists } from 'std/fs/mod.ts'
 import { Article } from './blog-posts.ts'
+import { ArticleRawMetadataSchema } from '../utils/validation.ts'
 
 const postDirPath = './data/posts'
 
-/** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} */
+/** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} on failure */
 async function loadArticle(id: string): Promise<Article | null> {
 	let text: string
 	try {
@@ -22,18 +23,18 @@ async function loadArticle(id: string): Promise<Article | null> {
 		throw error
 	}
 
-	// TODO add types validation
 	const { data, content } = parse(text)
-	const { title, published, snippet, tags, thumbnail } = data as Record<string, string>
-	const tagsArray = tags.split(',').map((tag) => tag.trim())
+
+	// deno-fmt-ignore
+	const { title, published, snippet, tags, thumbnail } = ArticleRawMetadataSchema.parse(data)
 
 	return {
 		id,
 		title,
-		published: new Date(published),
+		published,
 		snippet,
 		content,
-		tags: tagsArray,
+		tags,
 		thumbnail,
 	}
 }
