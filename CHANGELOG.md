@@ -6,6 +6,7 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
+| Add validation and readonly ([#37](https://github.com/zzundalek/mergepanic/pull/37)) | features | [9115826f1110775b8210a359a07d4185c0bf98d1](https://github.com/zzundalek/mergepanic/commit/9115826f1110775b8210a359a07d4185c0bf98d1) |
 
 ## [1.0.1] - 2023-10-14
 

@@ -1,7 +1,11 @@
 import Badge from './badge.tsx'
 
+export interface BadgeProps {
+	badges: readonly string[]
+}
+
 /** Badges */
-export default function Badges(props: { badges: string[] }) {
+export default function Badges(props: BadgeProps) {
 	const { badges } = props
 	return (
 		<div class='flex gap-2'>

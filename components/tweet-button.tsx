@@ -4,7 +4,7 @@ interface TweetButton {
 }
 
 /** Tweet button */
-export default function TweetButton(props: TweetButton) {
+export default function TweetButton(props: Readonly<TweetButton>) {
 	const { url, text } = props
 
 	return (
