@@ -1,4 +1,5 @@
 import { AppProps } from '$fresh/server.ts'
+import { Partial } from '$fresh/runtime.ts'
 import Footer from '../components/footer.tsx'
 import { NavBar } from '../components/nav-bar.tsx'
 import Auth from '../islands/auth.tsx'
@@ -35,10 +36,15 @@ export default function App({ Component }: AppProps) {
 				<Auth serverUrl={globals.SERVER_URL} />
 				<Media />
 			</head>
-			<body class='flex flex-col min-h-screen bg-canvas dark:bg-canvas_dark text-black dark:text-white'>
+			<body
+				class='flex flex-col min-h-screen bg-canvas dark:bg-canvas_dark text-black dark:text-white'
+				f-client-nav
+			>
 				<NavBar />
 				<div class='my-8'>
-					<Component />
+					<Partial name='component'>
+						<Component />
+					</Partial>
 				</div>
 				<Footer />
 			</body>
