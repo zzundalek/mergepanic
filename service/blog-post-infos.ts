@@ -37,7 +37,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 	}
 
 	/** Add a like by `userId` to `likes` array if not exists and returns it. */
-	private addUserLike(likes: Like[], userId: string): Like[] {
+	private addUserLike(likes: readonly Like[], userId: string): Like[] {
 		if (likes.findIndex((like) => like.userId === userId) !== -1) {
 			return [...likes]
 		}
@@ -45,7 +45,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 	}
 
 	/** Removes a like by `userId` from `likes` array and returns it. */
-	private removeUserLike(likes: Like[], userId: string): Like[] {
+	private removeUserLike(likes: readonly Like[], userId: string): Like[] {
 		return likes.filter((like) => like.userId !== userId)
 	}
 

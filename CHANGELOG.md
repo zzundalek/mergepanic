@@ -6,6 +6,8 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
+| Upgrade Fresh and add client side navigation ([#39](https://github.com/zzundalek/mergepanic/pull/39)) | feature | [49f33a78d27fdf6f6e2cfa514fc84cfda90df0e1](https://github.com/zzundalek/mergepanic/commit/49f33a78d27fdf6f6e2cfa514fc84cfda90df0e1) |
+| Add validation and readonly ([#37](https://github.com/zzundalek/mergepanic/pull/37)) | features | [9115826f1110775b8210a359a07d4185c0bf98d1](https://github.com/zzundalek/mergepanic/commit/9115826f1110775b8210a359a07d4185c0bf98d1) |
 
 ## [1.0.1] - 2023-10-14
 

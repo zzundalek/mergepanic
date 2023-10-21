@@ -1,5 +1,5 @@
-import { assertEquals } from '$std/assert/mod.ts'
-import { returnsNext, stub } from '$std/testing/mock.ts'
+import { assertEquals } from 'std/assert/mod.ts'
+import { returnsNext, stub } from 'std/testing/mock.ts'
 import Jwt, { _internals } from './jwt.ts'
 
 Deno.test('Test valid token will be verified', async () => {

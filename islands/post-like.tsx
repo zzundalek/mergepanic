@@ -2,6 +2,7 @@ import { Signal } from '@preact/signals'
 import { useEffect, useState } from 'preact/hooks'
 import { IS_BROWSER } from '$fresh/runtime.ts'
 import { auth } from '../utils/signals/auth.ts'
+import { LikeBodySchema } from '../utils/validation.ts'
 
 interface PostLikes {
 	id: string
@@ -54,8 +55,8 @@ export default function PostLike(props: PostLikesProps) {
 				},
 			)
 
-			// TODO validate
-			const result = await response.json()
+			// TODO error handling
+			const result = LikeBodySchema.parse(await response.json())
 
 			return result.likesCount
 		}
