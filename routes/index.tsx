@@ -4,7 +4,7 @@ import BlogPostCard from '../components/blog-post-card.tsx'
 import BlogPostService, { BlogPost } from '../service/blog-posts.ts'
 import { defaultOgp, Ogp } from '../components/ogp.tsx'
 
-export const handler: Handlers<BlogPost[]> = {
+export const handler: Handlers<readonly BlogPost[]> = {
 	async GET(_req, ctx) {
 		const posts = await BlogPostService.listPosts()
 		return ctx.render(posts)
@@ -12,7 +12,7 @@ export const handler: Handlers<BlogPost[]> = {
 }
 
 /** Home page */
-export default function Home(props: PageProps<BlogPost[]>) {
+export default function Home(props: PageProps<readonly BlogPost[]>) {
 	const posts = props.data
 
 	return (

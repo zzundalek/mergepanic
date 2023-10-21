@@ -15,7 +15,7 @@ const defaultOgp = {
 
 export { defaultOgp, type OgpProps }
 
-export function Ogp(props: OgpProps) {
+export function Ogp(props: Readonly<OgpProps>) {
 	const { title, description, pagePath } = props
 	const thumbnailPath = props.thumbnailPath ?? defaultThumbnailPath
 

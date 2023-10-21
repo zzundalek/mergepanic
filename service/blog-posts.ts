@@ -2,29 +2,33 @@
  * Service agregates Articles (invariable data) and Blog post info (variable data)
  */
 
+import { ArticleRawMetadata } from '../utils/validation.ts'
 import ArticleService from './articles.ts'
 import BlogPostInfoService from './blog-post-infos.ts'
-interface BlogPost {
+
+type BlogPost = Article & BlogPostInfo
+
+type Article = ArticleMetadata & ArticleContent
+
+type ArticleMetadata = ArticleRawMetadata & {
 	id: string
-	title: string
-	published: Date
-	snippet: string
-	content: string
-	tags: string[]
-	thumbnail?: string
-	likes: Like[]
 }
 
-type BlogPostInfo = Pick<BlogPost, 'id' | 'likes'>
+interface ArticleContent {
+	content: string
+}
 
-type Article = Omit<BlogPost, 'likes'>
+interface BlogPostInfo {
+	id: string
+	likes: Like[]
+}
 
 interface Like {
 	userId: string
 	ts: number
 }
 
-export type { Article, BlogPost, BlogPostInfo, Like }
+export type { Article, ArticleContent, ArticleMetadata, BlogPost, BlogPostInfo, Like }
 
 /** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} */
 async function loadPost(id: string): Promise<BlogPost | null> {
@@ -58,8 +62,8 @@ async function listPosts(): Promise<BlogPost[]> {
 
 /** Agregates and returns data from `blogPostInfo` and `article`.  */
 function consolidatePost(
-	article: Article,
-	blogPostInfo: BlogPostInfo | null,
+	article: Readonly<Article>,
+	blogPostInfo: Readonly<BlogPostInfo> | null,
 ): BlogPost {
 	if (blogPostInfo == null) {
 		return { ...article, likes: [] }

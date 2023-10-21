@@ -1,6 +1,7 @@
 import { useEffect } from 'preact/hooks'
 import { IS_BROWSER } from '$fresh/runtime.ts'
 import { auth } from '../utils/signals/auth.ts'
+import { LoginBodySchema } from '../utils/validation.ts'
 
 interface Props {
 	serverUrl: string
@@ -24,10 +25,9 @@ export default function Auth(props: Props) {
 					method: 'POST',
 				},
 			)
-			const result = await response.json()
+			// TODO add error handling
+			const result = LoginBodySchema.parse(await response.json())
 
-			// TODO add validation
-			console.log(result.token)
 			return result.token
 		}
 
