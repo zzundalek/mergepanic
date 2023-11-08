@@ -6,6 +6,7 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
+| Fresh 1.5.4 and launch scripts upgrade ([#42](https://github.com/zzundalek/mergepanic/pull/42)) | feature | [984c0706897072fa10befc1a7d1ca730aba8e110](https://github.com/zzundalek/mergepanic/commit/984c0706897072fa10befc1a7d1ca730aba8e110) |
 
 ## [1.1.0] - 2023-10-21
 
