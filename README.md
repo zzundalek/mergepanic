@@ -14,16 +14,16 @@ Make sure to install Deno: https://deno.land/manual/getting_started/installation
 - `SERVER_URL` - server url for apis (e.g. `http://localhost:8000`)
 - `ENV` - environment (used to setup loging etc) possible values : `dev` | `prod`. Default value is `dev`.
 
-For development, values must be set in `.envrc` file. Than load the values:
+For development, values must be set in `.env` file.
+
+To start the project and watch for changes:
 
 ```
-direnv allow && eval "$(direnv hook zsh)"
+deno task dev
 ```
 
-Then start the project:
+To start the project:
 
 ```
 deno task start
 ```
-
-This will watch the project directory and restart as necessary.
