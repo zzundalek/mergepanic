@@ -7,33 +7,19 @@
         {
             "request": "launch",
             "type": "node",
-            "name": "Debug Deno",
-            "program": "${workspaceFolder}/main.ts",
+            "name": "Debug",
+            "program": "${workspaceFolder}/dev.ts",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "/opt/homebrew/bin/deno",
             "runtimeArgs": [
                 "run",
-                "--inspect-wait",
-                "--allow-all"
-            ],
-            "attachSimplePort": 9229,
-            "envFile": "${workspaceFolder}/.envrc"
-        },
-        {
-            "request": "launch",
-            "type": "node",
-            "name": "Debug Unstable Deno",
-            "program": "${workspaceFolder}/main.ts",
-            "cwd": "${workspaceFolder}",
-            "runtimeExecutable": "/opt/homebrew/bin/deno",
-            "runtimeArgs": [
-                "run",
+                "--unstable",
                 "--inspect-wait",
                 "--allow-all",
-                "--unstable"
+                "--watch=static/,routes/,data/,utils/,components/,islands/,service/",
+                "--env=.env"
             ],
-            "attachSimplePort": 9229,
-            "envFile": "${workspaceFolder}/.envrc"
+            "attachSimplePort": 9229
         }
     ]
 }
