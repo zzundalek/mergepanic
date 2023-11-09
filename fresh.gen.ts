@@ -11,9 +11,10 @@ import * as $5 from './routes/api/user/blog-posts/[id]/unlike.ts'
 import * as $6 from './routes/blog/[id].tsx'
 import * as $7 from './routes/index.tsx'
 import * as $$0 from './islands/auth.tsx'
-import * as $$1 from './islands/fresh-badge.tsx'
-import * as $$2 from './islands/media.tsx'
-import * as $$3 from './islands/post-like.tsx'
+import * as $$1 from './islands/cookies-consent.tsx'
+import * as $$2 from './islands/fresh-badge.tsx'
+import * as $$3 from './islands/media.tsx'
+import * as $$4 from './islands/post-like.tsx'
 
 const manifest = {
 	routes: {
@@ -28,9 +29,10 @@ const manifest = {
 	},
 	islands: {
 		'./islands/auth.tsx': $$0,
-		'./islands/fresh-badge.tsx': $$1,
-		'./islands/media.tsx': $$2,
-		'./islands/post-like.tsx': $$3,
+		'./islands/cookies-consent.tsx': $$1,
+		'./islands/fresh-badge.tsx': $$2,
+		'./islands/media.tsx': $$3,
+		'./islands/post-like.tsx': $$4,
 	},
 	baseUrl: import.meta.url,
 }
