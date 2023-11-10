@@ -6,6 +6,7 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
+| Add create new release script ([#45](https://github.com/zzundalek/mergepanic/pull/45)) | feature | [d7fa513f8529f1f3687e3b906b999e525709c820](https://github.com/zzundalek/mergepanic/commit/d7fa513f8529f1f3687e3b906b999e525709c820) |
 | Add cookies consent ([#43](https://github.com/zzundalek/mergepanic/pull/43)) | feature | [5071e89a78dc231e45a9544869d0eefbe332f599](https://github.com/zzundalek/mergepanic/commit/5071e89a78dc231e45a9544869d0eefbe332f599) |
 | Fresh 1.5.4 and launch scripts upgrade ([#42](https://github.com/zzundalek/mergepanic/pull/42)) | feature | [984c0706897072fa10befc1a7d1ca730aba8e110](https://github.com/zzundalek/mergepanic/commit/984c0706897072fa10befc1a7d1ca730aba8e110) |
 
