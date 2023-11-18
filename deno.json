@@ -5,7 +5,8 @@
 		"start": "deno run -A --unstable main.ts",
 		"dev": "deno run -A --unstable --env=.env --watch=static/,routes/,data/,utils/,components/,islands/,service/ dev.ts",
 		"build": "deno run -A --unstable main.ts build",
-		"update": "deno run -A -r https://fresh.deno.dev/update ."
+		"update": "deno run -A -r https://fresh.deno.dev/update .",
+		"release": "deno run -A ./release/create-new-release.ts"
 	},
 	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
 	"fmt": {
