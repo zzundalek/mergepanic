@@ -3,6 +3,7 @@ title: Document with Docusaurus
 published: 2023-10-12T11:34:14.380Z
 snippet: 📝 Start documenting instantly with Docusaurus and GitHub pages
 tags: [Dev]
+thumbnail: default-thumbnails/dev.jpeg
 ---
 
 In our project we were searching for a documentation tool to distribute the product documentation to our clients. Documentation tool had to support multiple languages (English, Japanese, ...) and documentation versioning. After some research we picked [Docusaurus](https://docusaurus.io/).
@@ -189,7 +190,7 @@ const config = {
 2. Push changes to the `develop` branch in GitHub. `gh-pages` branch should be automatically created.
 
 3. Turn on GitHub pages for the repository and click `Save`.
-    ![Turn on GitHub pages](/docusaurus/github_pages_on.jpeg)
+    ![Turn on GitHub pages](/0003_docusaurus/github_pages_on.jpeg)
 
 4. Check the `GitHub pages` at `https://{your_github_user_name}.github.io/{your_github_repository_name}/`
 
