@@ -13,7 +13,7 @@ intitConsole(globals.ENV)
 /** App component */
 export default function App({ Component }: AppProps) {
 	return (
-		<html>
+		<html lang='en'>
 			<head>
 				<meta charSet='utf-8' />
 				<meta
