@@ -7,7 +7,7 @@ const ArticleRawMetadataSchema = z.object({
 	published: z.date(),
 	snippet: z.string(),
 	tags: z.array(z.string()),
-	thumbnail: z.optional(z.string()),
+	thumbnail: z.string(),
 })
 
 const LoginBodySchema = z.object({

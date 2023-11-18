@@ -7,7 +7,7 @@ thumbnail: 0002_hike-myojin-gatake/fuji.jpeg
 ---
 
 **Fun (3/5)** ⭐⭐⭐\
-**Difficulty (2/5)** 💪💪\
+**Difficulty (3/5)** 💪💪💪\
 **Access (4/5)**  👍👍👍👍
 
 Being busy at work for a long time, my return to hiking felt like a quiet revelation. After nearly half a year away from the trails, I embarked on a journey to Myōjin Gatake (明神ヶ岳). 

@@ -6,7 +6,7 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
-| | | |
+| Display article thumbnails in article list ([#51](https://github.com/zzundalek/mergepanic/pull/51)) | feature | [998803649d210dbda246fbe26a745da2374be0f3](https://github.com/zzundalek/mergepanic/commit/998803649d210dbda246fbe26a745da2374be0f3) |
 
 ## [1.2.0] - 2023-11-10
 

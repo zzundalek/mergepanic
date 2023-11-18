@@ -28,7 +28,7 @@ export default function Home(props: PageProps<readonly BlogPost[]>) {
 					</h1>
 				</div>
 				<div class='px-4 mx-auto max-w-screen-md'>
-					<ul role='list' class='divide-y divide-gray-200'>
+					<ul role='list'>
 						{posts.map((post) => BlogPostCard({ post }))}
 					</ul>
 				</div>
