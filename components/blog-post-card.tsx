@@ -9,7 +9,12 @@ export default function BlogPostCard(props: { post: BlogPost }) {
 			<a href={`/blog/${id}`}>
 				<div
 					class='bg-center bg-cover mb-4 rounded'
-					style={`aspect-ratio: 21 / 9; background-image: url('/${thumbnail}');`}
+					style={`aspect-ratio: 21 / 9; background-image: 
+						image-set(
+							url("/${thumbnail}.avif") type("image/avif"),
+							url("/${thumbnail}.jpg") type("image/jpeg")
+						);
+					`}
 				>
 				</div>
 				<h1 class='text-2xl'>{title}</h1>
