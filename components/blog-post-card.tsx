@@ -1,9 +1,21 @@
 import { BlogPost } from '../service/blog-posts.ts'
+import { getImageSetUrls } from '../utils/images.ts'
 import Badges from './badges/badges.tsx'
 
 /** Blog post card */
 export default function BlogPostCard(props: { post: BlogPost }) {
-	const { id, title, snippet, published, likes, tags, thumbnail } = props.post
+	const {
+		id,
+		title,
+		snippet,
+		published,
+		likes,
+		tags,
+		thumbnails,
+	} = props.post
+
+	const imageSetUrls = getImageSetUrls(thumbnails)
+
 	return (
 		<li class='py-6 px-4 hover:bg-gray-100 hover:dark:bg-gray-800'>
 			<a href={`/blog/${id}`}>
@@ -11,8 +23,7 @@ export default function BlogPostCard(props: { post: BlogPost }) {
 					class='bg-center bg-cover mb-4 rounded'
 					style={`aspect-ratio: 21 / 9; background-image: 
 						image-set(
-							url("/${thumbnail}.avif") type("image/avif"),
-							url("/${thumbnail}.jpg") type("image/jpeg")
+							${imageSetUrls}
 						);
 					`}
 				>

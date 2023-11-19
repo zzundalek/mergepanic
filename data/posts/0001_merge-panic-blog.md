@@ -3,7 +3,7 @@ title: Merge Panic blog
 published: 2023-09-21T11:09:29.991Z
 snippet: 🚀 Inspired by Learn in public article I've started this blog!
 tags: [Dev, Usuals]
-thumbnail: 0001_merge-panic-blog/launch
+thumbnails: [/0001_merge-panic-blog/launch.avif, /0001_merge-panic-blog/launch.webp, /0001_merge-panic-blog/launch.jpg]
 ---
 
 Hello! I'm a developer from Czech Republic 🇨🇿 currently working in Japan. I had been inspired by Shawn

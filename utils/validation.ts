@@ -1,13 +1,18 @@
 import { z } from 'zod'
 
 /* Schemas */
+const ImageUrlSchema = z.custom<'ImageUrl'>((url) => {
+	return typeof url === 'string'
+		? /^\/.+\.(gif|png|jpeg|jpg|webp|avif)$/.test(url)
+		: false
+})
 
 const ArticleRawMetadataSchema = z.object({
 	title: z.string(),
 	published: z.date(),
 	snippet: z.string(),
 	tags: z.array(z.string()),
-	thumbnail: z.string(),
+	thumbnails: z.array(ImageUrlSchema).nonempty(),
 })
 
 const LoginBodySchema = z.object({
@@ -43,6 +48,7 @@ type Environment = z.infer<typeof EnvironmentSchema>
 type Globals = z.infer<typeof GlobalsSchema>
 type Secrets = z.infer<typeof SecretsSchema>
 type ServerUrl = z.infer<typeof ServerUrlSchema>
+type ImageUrl = z.infer<typeof ImageUrlSchema>
 
 /* Exports */
 
@@ -50,6 +56,7 @@ export type {
 	ArticleRawMetadata,
 	Environment,
 	Globals,
+	ImageUrl,
 	LikeBody,
 	LoginBody,
 	Secrets,
@@ -59,6 +66,7 @@ export {
 	ArticleRawMetadataSchema,
 	EnvironmentSchema,
 	GlobalsSchema,
+	ImageUrlSchema,
 	LikeBodySchema,
 	LoginBodySchema,
 	SecretsSchema,
