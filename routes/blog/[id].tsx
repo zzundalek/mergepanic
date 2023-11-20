@@ -45,7 +45,7 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 		title: `MergePanic - ${post.title}`,
 		description: post.snippet,
 		pagePath: `blog/${post.id}`,
-		thumbnailPath: post.thumbnails[0],
+		thumbnailPath: post.thumbnail,
 	}
 
 	return (

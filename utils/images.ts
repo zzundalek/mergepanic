@@ -1,7 +1,5 @@
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 
-import { ImageUrl } from './validation.ts'
-
 /** Returns mime type for supported images othervise returns null */
 function getSupportedImageMimeType(filePath: string): string | null {
 	const filenameExtension = filePath.match(/^.*\.([^/]+$)/)
@@ -23,20 +21,4 @@ function getSupportedImageMimeType(filePath: string): string | null {
 	}
 }
 
-/** Returns string for image-set fuctinon from @images */
-function getImageSetUrls(images: readonly ImageUrl[]): string {
-	return images.reduce(
-		(imageSetUrls, imagePath) => {
-			const mimeType = getSupportedImageMimeType(imagePath)
-			if (mimeType == null) {
-				console.error('Unknown image mime type for file: ', imagePath)
-				return imageSetUrls
-			}
-			return imageSetUrls + (imageSetUrls.length === 0 ? '' : ',') +
-				`url("${imagePath}") type("${mimeType}")`
-		},
-		'',
-	)
-}
-
-export { getImageSetUrls, getSupportedImageMimeType }
+export { getSupportedImageMimeType }

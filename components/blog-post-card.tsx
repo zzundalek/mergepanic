@@ -1,6 +1,7 @@
 import { BlogPost } from '../service/blog-posts.ts'
-import { getImageSetUrls } from '../utils/images.ts'
+import { getSupportedImageMimeType } from '../utils/images.ts'
 import Badges from './badges/badges.tsx'
+import ProgressiveImage, { type ProgressiveImg } from './progressive-image.tsx'
 
 /** Blog post card */
 export default function BlogPostCard(props: { post: BlogPost }) {
@@ -11,22 +12,32 @@ export default function BlogPostCard(props: { post: BlogPost }) {
 		published,
 		likes,
 		tags,
-		thumbnails,
+		thumbnail,
+		progressiveThumbnails,
 	} = props.post
 
-	const imageSetUrls = getImageSetUrls(thumbnails)
+	// ? TODO extract + add validation that the image file exists
+	const progressiveThumbnailsWithTypes: ProgressiveImg[] = progressiveThumbnails.reduce(
+		(res, thumbnail) => {
+			const type = getSupportedImageMimeType(thumbnail)
+			if (type != null) {
+				res.push({ src: thumbnail, type })
+			} else {
+				console.error('Invalid thumbnail type: ', thumbnail)
+			}
+			return res
+		},
+		[] as ProgressiveImg[],
+	)
 
 	return (
 		<li class='py-6 px-4 hover:bg-gray-100 hover:dark:bg-gray-800'>
 			<a href={`/blog/${id}`}>
-				<div
-					class='bg-center bg-cover mb-4 rounded'
-					style={`aspect-ratio: 21 / 9; background-image: 
-						image-set(
-							${imageSetUrls}
-						);
-					`}
-				>
+				<div class='mb-4 rounded overflow-hidden'>
+					<ProgressiveImage
+						imgSrc={thumbnail}
+						progressiveImgs={progressiveThumbnailsWithTypes}
+					/>
 				</div>
 				<h1 class='text-2xl'>{title}</h1>
 				<p class='text-neutral dark:text-neutral_dark'>{snippet}</p>
