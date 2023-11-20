@@ -26,7 +26,7 @@ async function loadArticle(id: string): Promise<Article | null> {
 	const { data, content } = parse(text)
 
 	// deno-fmt-ignore
-	const { title, published, snippet, tags, thumbnail } = ArticleRawMetadataSchema.parse(data)
+	const { title, published, snippet, tags, progressiveThumbnails, thumbnail } = ArticleRawMetadataSchema.parse(data)
 
 	return {
 		id,
@@ -36,6 +36,7 @@ async function loadArticle(id: string): Promise<Article | null> {
 		content,
 		tags,
 		thumbnail,
+		progressiveThumbnails,
 	}
 }
 

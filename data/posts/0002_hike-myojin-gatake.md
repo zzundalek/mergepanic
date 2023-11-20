@@ -3,11 +3,12 @@ title: 'One-Day Adventure: Myōjin gatake (明神ヶ岳)'
 published: 2023-09-22T11:09:29.991Z
 snippet: 'Stepping Back into Nature: My Return to Hiking After Six Months of Silence'
 tags: [Hiking]
-thumbnail: 0002_hike-myojin-gatake/fuji.jpeg
+thumbnail: /0002_hike-myojin-gatake/thumbnails/fuji.jpg
+progressiveThumbnails: [/0002_hike-myojin-gatake/thumbnails/fuji.avif, /0002_hike-myojin-gatake/thumbnails/fuji.webp]
 ---
 
 **Fun (3/5)** ⭐⭐⭐\
-**Difficulty (2/5)** 💪💪\
+**Difficulty (3/5)** 💪💪💪\
 **Access (4/5)**  👍👍👍👍
 
 Being busy at work for a long time, my return to hiking felt like a quiet revelation. After nearly half a year away from the trails, I embarked on a journey to Myōjin Gatake (明神ヶ岳). 

@@ -1,10 +1,10 @@
 async function readChangelog(): Promise<string> {
-	const changelog = await Deno.readTextFile('../CHANGELOG.md')
+	const changelog = await Deno.readTextFile('./CHANGELOG.md')
 	return changelog
 }
 
 async function readChangelogHeader(): Promise<string> {
-	const changelog = await Deno.readTextFile('./unreleasedHeader.md')
+	const changelog = await Deno.readTextFile('./release/unreleasedHeader.md')
 	return changelog
 }
 
@@ -35,6 +35,7 @@ function getNextVersionNumber(versionNumber: string): string {
 	switch (numberCount) {
 		case 3:
 			separateNumbers[1] = (Number(separateNumbers[1]) + 1).toString()
+			separateNumbers[2] = '0'
 			break
 		default:
 			console.warn(`Unable to propose new version number for ${versionNumber}`)
@@ -81,7 +82,7 @@ async function updateChangelogForNewRelease() {
 		newChangelogHeader,
 	)
 
-	await Deno.writeTextFile('../CHANGELOG.md', updatedChangelogText)
+	await Deno.writeTextFile('./CHANGELOG.md', updatedChangelogText)
 
 	console.log(`Successfuly updated to '${nextVersionNumber}'`)
 }

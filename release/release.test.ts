@@ -6,7 +6,7 @@ Deno.test('Test propose version number for 1.0.0', () => {
 })
 
 Deno.test('Test propose version number for 0.0.21', () => {
-	assertEquals(getNextVersionNumber('0.0.21'), '0.1.21')
+	assertEquals(getNextVersionNumber('0.0.21'), '0.1.0')
 })
 
 Deno.test('Test propose version number for 1.0.0.beta1', () => {

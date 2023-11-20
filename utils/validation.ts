@@ -1,13 +1,21 @@
 import { z } from 'zod'
 
 /* Schemas */
+const ImageUrlSchema = z.custom<'ImageUrl'>((url) => {
+	return typeof url === 'string' ? /^\/.+\.(gif|png|jpeg|jpg)$/.test(url) : false
+})
+
+const ProgressiveImageUrlSchema = z.custom<'ProgressiveImageUrl'>((url) => {
+	return typeof url === 'string' ? /^\/.+\.(webp|avif)$/.test(url) : false
+})
 
 const ArticleRawMetadataSchema = z.object({
 	title: z.string(),
 	published: z.date(),
 	snippet: z.string(),
 	tags: z.array(z.string()),
-	thumbnail: z.optional(z.string()),
+	thumbnail: ImageUrlSchema,
+	progressiveThumbnails: z.array(ProgressiveImageUrlSchema),
 })
 
 const LoginBodySchema = z.object({
@@ -43,6 +51,8 @@ type Environment = z.infer<typeof EnvironmentSchema>
 type Globals = z.infer<typeof GlobalsSchema>
 type Secrets = z.infer<typeof SecretsSchema>
 type ServerUrl = z.infer<typeof ServerUrlSchema>
+type ImageUrl = z.infer<typeof ImageUrlSchema>
+type ProgressiveImageUrl = z.infer<typeof ProgressiveImageUrlSchema>
 
 /* Exports */
 
@@ -50,8 +60,10 @@ export type {
 	ArticleRawMetadata,
 	Environment,
 	Globals,
+	ImageUrl,
 	LikeBody,
 	LoginBody,
+	ProgressiveImageUrl,
 	Secrets,
 	ServerUrl,
 }
@@ -59,8 +71,10 @@ export {
 	ArticleRawMetadataSchema,
 	EnvironmentSchema,
 	GlobalsSchema,
+	ImageUrlSchema,
 	LikeBodySchema,
 	LoginBodySchema,
+	ProgressiveImageUrlSchema,
 	SecretsSchema,
 	ServerUrlSchema,
 }
