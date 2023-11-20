@@ -3,7 +3,8 @@ title: Document with Docusaurus
 published: 2023-10-12T11:34:14.380Z
 snippet: 📝 Start documenting instantly with Docusaurus and GitHub pages
 tags: [Dev]
-thumbnail: default-thumbnails/dev.jpeg
+thumbnail: /default-thumbnails/coding/coding.jpg
+progressiveThumbnails: [/default-thumbnails/coding/coding.avif, /default-thumbnails/coding/coding.webp]
 ---
 
 In our project we were searching for a documentation tool to distribute the product documentation to our clients. Documentation tool had to support multiple languages (English, Japanese, ...) and documentation versioning. After some research we picked [Docusaurus](https://docusaurus.io/).
