@@ -6,6 +6,12 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
+| | | |
+
+## [1.3.0] - 2023-11-20
+
+| Description | Type | Commit |
+| -- | -- | -- |
 | Add avif/webp thumbnails to article list ([#54](https://github.com/zzundalek/mergepanic/pull/54)) | feature | [859456f2f532167cfa23e75b15be3dbe0d58eaf6](https://github.com/zzundalek/mergepanic/commit/859456f2f532167cfa23e75b15be3dbe0d58eaf6) |
 | Display article thumbnails in article list ([#51](https://github.com/zzundalek/mergepanic/pull/51)) | feature | [998803649d210dbda246fbe26a745da2374be0f3](https://github.com/zzundalek/mergepanic/commit/998803649d210dbda246fbe26a745da2374be0f3) |
 
