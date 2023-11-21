@@ -4,7 +4,7 @@
 
 import { ArticleRawMetadata } from '../utils/validation.ts'
 import ArticleService from './articles.ts'
-import BlogPostInfoService from './blog-post-infos.ts'
+import BlogPostInfoService from './blog-post-info.ts'
 
 type BlogPost = Article & BlogPostInfo
 

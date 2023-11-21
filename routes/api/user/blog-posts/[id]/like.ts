@@ -1,5 +1,5 @@
 import { Handlers } from '$fresh/server.ts'
-import BlogPostInfoService from '../../../../../service/blog-post-infos.ts'
+import BlogPostInfoService from '../../../../../service/blog-post-info.ts'
 import { State } from '../../_middleware.ts'
 
 export const handler: Handlers<void, State> = {
