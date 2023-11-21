@@ -5,7 +5,7 @@
  * i.e. Likes, comments etc.
  */
 
-import { BlogPostInfo, Like } from './blog-posts.ts'
+import { BlogPostInfo, Comment, Like } from './blog-posts.ts'
 import { HttpError } from '../utils/http-error.ts'
 import ArticlesService from './articles.ts' // TODO need to extracted and moved to a service
 import Dao from './dao.ts'
@@ -69,7 +69,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 		await this.setBlogPost(blogPostId, blogPost)
 	}
 
-	/** Add a like by @userId to a blog post specified by @userId . @throws {HttpError | Error} on failure.  */
+	/** Add a like by @userId to a blog post specified by @blogPostId . @throws {HttpError | Error} on failure.  */
 	public async addLike(blogPostId: string, userId: string): Promise<number> {
 		for (
 			let triesCount = 0;
@@ -83,6 +83,7 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 					const newBlogPost: BlogPostInfo = {
 						id: blogPostId,
 						likes: [{ userId, ts: Date.now() }],
+						comments: [],
 					}
 
 					await this.createNewBlogPostEntry(newBlogPost)
@@ -107,6 +108,49 @@ class BlogPostInfoService extends Dao<BlogPostInfo> {
 				return updatedLikes.length
 			} catch (error) {
 				console.warn(`Failed to add like to a blog post ${blogPostId}.`, error)
+			}
+		}
+
+		throw new Error('Max tries reached for KV commit')
+	}
+
+	/** Add a @comment to a blog post specified by @blogPostId . @throws {HttpError | Error} on failure.  */
+	public async addComment(blogPostId: string, comment: Comment): Promise<void> {
+		for (
+			let triesCount = 0;
+			triesCount < this.maxNumberOfCommitTries;
+			triesCount++
+		) {
+			try {
+				const blogPostEntry = await this.getBlogPost(blogPostId)
+
+				if (blogPostEntry == null) {
+					const newBlogPost: BlogPostInfo = {
+						id: blogPostId,
+						likes: [],
+						comments: [comment],
+					}
+
+					await this.createNewBlogPostEntry(newBlogPost)
+					console.log(blogPostEntry)
+					return
+				}
+
+				const blogPost = blogPostEntry.value
+
+				blogPost.comments = [comment, ...blogPost.comments]
+
+				await this.getKv()
+					.atomic()
+					.check(blogPostEntry) // Ensure the blog post data hasn't changed
+					.set(this.getEntryKey(blogPostId), blogPost) // Update the post data
+					.commit()
+
+				console.log(blogPostEntry)
+
+				return
+			} catch (error) {
+				console.warn(`Failed to add comment to a blog post ${blogPostId}.`, error)
 			}
 		}
 

@@ -21,6 +21,14 @@ interface ArticleContent {
 interface BlogPostInfo {
 	id: string
 	likes: Like[]
+	comments: Comment[]
+}
+
+interface Comment {
+	id: string
+	text: string
+	created: Date
+	createdBy: string
 }
 
 interface Like {
@@ -28,7 +36,15 @@ interface Like {
 	ts: number
 }
 
-export type { Article, ArticleContent, ArticleMetadata, BlogPost, BlogPostInfo, Like }
+export type {
+	Article,
+	ArticleContent,
+	ArticleMetadata,
+	BlogPost,
+	BlogPostInfo,
+	Comment,
+	Like,
+}
 
 /** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} */
 async function loadPost(id: string): Promise<BlogPost | null> {
@@ -66,10 +82,10 @@ function consolidatePost(
 	blogPostInfo: Readonly<BlogPostInfo> | null,
 ): BlogPost {
 	if (blogPostInfo == null) {
-		return { ...article, likes: [] }
+		return { ...article, likes: [], comments: [] }
 	}
 
-	return { ...article, likes: blogPostInfo.likes }
+	return { ...article, likes: blogPostInfo.likes, comments: blogPostInfo.comments }
 }
 
 export default { listPosts, loadPost }
