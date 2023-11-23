@@ -18,12 +18,23 @@ const ArticleRawMetadataSchema = z.object({
 	progressiveThumbnails: z.array(ProgressiveImageUrlSchema),
 })
 
+const CommentSchema = z.object({
+	id: z.string().min(1),
+	text: z.string().min(1),
+	created: z.number(),
+	createdBy: z.string().min(1),
+})
+
 const LoginBodySchema = z.object({
 	token: z.string(),
 })
 
 const LikeBodySchema = z.object({
 	likesCount: z.number(),
+})
+
+const AddCommentBodySchema = z.object({
+	comment: z.string().min(1),
 })
 
 const SecretsSchema = z.object({
@@ -47,17 +58,21 @@ const GlobalsSchema = z.object({
 type ArticleRawMetadata = z.infer<typeof ArticleRawMetadataSchema>
 type LoginBody = z.infer<typeof LoginBodySchema>
 type LikeBody = z.infer<typeof LikeBodySchema>
+type AddCommentBody = z.infer<typeof AddCommentBodySchema>
 type Environment = z.infer<typeof EnvironmentSchema>
 type Globals = z.infer<typeof GlobalsSchema>
 type Secrets = z.infer<typeof SecretsSchema>
 type ServerUrl = z.infer<typeof ServerUrlSchema>
 type ImageUrl = z.infer<typeof ImageUrlSchema>
 type ProgressiveImageUrl = z.infer<typeof ProgressiveImageUrlSchema>
+type Comment = z.infer<typeof CommentSchema>
 
 /* Exports */
 
 export type {
+	AddCommentBody,
 	ArticleRawMetadata,
+	Comment,
 	Environment,
 	Globals,
 	ImageUrl,
@@ -68,7 +83,9 @@ export type {
 	ServerUrl,
 }
 export {
+	AddCommentBodySchema,
 	ArticleRawMetadataSchema,
+	CommentSchema,
 	EnvironmentSchema,
 	GlobalsSchema,
 	ImageUrlSchema,

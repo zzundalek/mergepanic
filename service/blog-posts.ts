@@ -5,6 +5,7 @@
 import { ArticleRawMetadata } from '../utils/validation.ts'
 import ArticleService from './articles.ts'
 import BlogPostInfoService from './blog-post-info.ts'
+import type { Comment } from '../utils/validation.ts'
 
 type BlogPost = Article & BlogPostInfo
 
@@ -24,27 +25,12 @@ interface BlogPostInfo {
 	comments: Comment[]
 }
 
-interface Comment {
-	id: string
-	text: string
-	created: Date
-	createdBy: string
-}
-
 interface Like {
 	userId: string
 	ts: number
 }
 
-export type {
-	Article,
-	ArticleContent,
-	ArticleMetadata,
-	BlogPost,
-	BlogPostInfo,
-	Comment,
-	Like,
-}
+export type { Article, ArticleContent, ArticleMetadata, BlogPost, BlogPostInfo, Like }
 
 /** Returns blog posts specified by id if found, otherwise returns null. @throws {Error} */
 async function loadPost(id: string): Promise<BlogPost | null> {

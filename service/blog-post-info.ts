@@ -5,7 +5,8 @@
  * i.e. Likes, comments etc.
  */
 
-import { BlogPostInfo, Comment, Like } from './blog-posts.ts'
+import { BlogPostInfo, Like } from './blog-posts.ts'
+import { Comment } from '../utils/validation.ts'
 import { HttpError } from '../utils/http-error.ts'
 import ArticlesService from './articles.ts' // TODO need to extracted and moved to a service
 import Dao from './dao.ts'

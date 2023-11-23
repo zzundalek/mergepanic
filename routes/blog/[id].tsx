@@ -2,6 +2,8 @@ import { Handlers, PageProps } from '$fresh/server.ts'
 import { useSignal } from '@preact/signals'
 import TweetButton from '../../components/tweet-button.tsx'
 import PostLike from '../../islands/post-like.tsx'
+import Comments from '../../islands/comments.tsx'
+import AddComment from '../../islands/add-comment.tsx'
 import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
 import { globals } from '../../utils/globals.ts'
 
@@ -90,6 +92,9 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 							text={`Merge Panic: ${post.title}`}
 						/>
 					</div>
+					<h2>Discussion</h2>
+					<AddComment blogPostId={post.id}></AddComment>
+					<Comments comments={post.comments} blogPostId={post.id} />
 				</div>
 			</div>
 		</>
