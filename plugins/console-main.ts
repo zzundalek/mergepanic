@@ -1,4 +1,4 @@
-import { Environment } from '../utils/globals.ts'
+import { Environment } from '../utils/validation.ts'
 
 /** Embeds a script to page to turn off all loging levels except error and warn for production  */
 export default function (environment: Environment) {
