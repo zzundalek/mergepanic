@@ -6,15 +6,19 @@ const JWT_SECRET = Deno.env.get('JWT_SECRET')
 const ENV = Deno.env.get('ENV')
 const SERVER_URL = Deno.env.get('SERVER_URL')
 const GA_ID = Deno.env.get('GA_ID')
+const GOOGLE_CLIENT_SECRET = Deno.env.get('GOOGLE_CLIENT_SECRET')
+const GOOGLE_CLIENT_ID = Deno.env.get('GOOGLE_CLIENT_ID')
 
 const rawSecrets = {
 	JWT_SECRET,
+	GOOGLE_CLIENT_SECRET,
 }
 
 const rawGlobals = {
 	SERVER_URL,
 	GA_ID,
 	ENV,
+	GOOGLE_CLIENT_ID,
 }
 
 const globals = GlobalsSchema.parse(rawGlobals)
