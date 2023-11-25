@@ -4,7 +4,7 @@
 		"check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
 		"start": "deno run -A --unstable-kv main.ts",
 		"dev": "deno run -A --unstable-kv --env=.env --unstable-hmr=static/,routes/,data/,utils/,components/,islands/,service/ dev.ts",
-		"build": "deno run -A --unstable-kv main.ts build",
+		"build": "deno run -A --unstable-kv dev.ts build",
 		"update": "deno run -A -r https://fresh.deno.dev/update .",
 		"release": "deno run -A ./release/create-new-release.ts"
 	},
