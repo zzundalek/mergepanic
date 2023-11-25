@@ -5,6 +5,13 @@ on:
   pull_request:
     branches: develop
 
+env:
+  JWT_SECRET: EMPTY-ONLY_NEEDED_FOR_BUILD
+  GOOGLE_CLIENT_ID: EMPTY-ONLY_NEEDED_FOR_BUILD  
+  GOOGLE_CLIENT_SECRET: EMPTY-ONLY_NEEDED_FOR_BUILD
+  SERVER_URL: http://empty-only_needed_for_build
+  ENV: dev
+
 jobs:
   deploy:
     name: Dev Deploy
@@ -31,4 +38,3 @@ jobs:
         with:
           project: "develop-mergepanic"
           entrypoint: "./main.ts"
-          
