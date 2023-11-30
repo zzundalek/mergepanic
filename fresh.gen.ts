@@ -5,7 +5,6 @@
 import * as $_404 from './routes/_404.tsx'
 import * as $_app from './routes/_app.tsx'
 import * as $api_auth_google_sign_in from './routes/api/auth/google-sign-in.ts'
-import * as $api_auth_login from './routes/api/auth/login.ts'
 import * as $api_user_middleware from './routes/api/user/_middleware.ts'
 import * as $api_user_blog_posts_id_like from './routes/api/user/blog-posts/[id]/like.ts'
 import * as $api_user_blog_posts_id_unlike from './routes/api/user/blog-posts/[id]/unlike.ts'
@@ -16,6 +15,7 @@ import * as $terms_of_service from './routes/terms-of-service.tsx'
 import * as $auth from './islands/auth.tsx'
 import * as $consent from './islands/consent.tsx'
 import * as $fresh_badge from './islands/fresh-badge.tsx'
+import * as $google_sign_in_button from './islands/google-sign-in-button.tsx'
 import * as $media from './islands/media.tsx'
 import * as $post_like from './islands/post-like.tsx'
 import { type Manifest } from '$fresh/server.ts'
@@ -25,7 +25,6 @@ const manifest = {
 		'./routes/_404.tsx': $_404,
 		'./routes/_app.tsx': $_app,
 		'./routes/api/auth/google-sign-in.ts': $api_auth_google_sign_in,
-		'./routes/api/auth/login.ts': $api_auth_login,
 		'./routes/api/user/_middleware.ts': $api_user_middleware,
 		'./routes/api/user/blog-posts/[id]/like.ts': $api_user_blog_posts_id_like,
 		'./routes/api/user/blog-posts/[id]/unlike.ts': $api_user_blog_posts_id_unlike,
@@ -38,6 +37,7 @@ const manifest = {
 		'./islands/auth.tsx': $auth,
 		'./islands/consent.tsx': $consent,
 		'./islands/fresh-badge.tsx': $fresh_badge,
+		'./islands/google-sign-in-button.tsx': $google_sign_in_button,
 		'./islands/media.tsx': $media,
 		'./islands/post-like.tsx': $post_like,
 	},

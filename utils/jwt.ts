@@ -34,19 +34,6 @@ const audience = 'mergepanic'
 
 const encodeSecret = (secret: string) => new TextEncoder().encode(secret)
 
-// TODO abolish completely
-const verifyUserBearerToken =
-	(secret: string) => async (jwtBearer: string): Promise<UserInfo | null> => {
-		console.log(`Verify token ${jwtBearer}`)
-		const match = jwtBearer.match(/^Bearer (?<jwt>.+)$/)
-		if (match?.groups == null) {
-			console.log(`Invalid token '${jwtBearer}'.`)
-			return null
-		}
-
-		return await verifyUserToken(secret)(match.groups.jwt)
-	}
-
 const verifyUserToken =
 	(secret: string) => async (jwt: string): Promise<UserInfo | null> => {
 		console.log(`Verify token ${jwt}`)
@@ -115,7 +102,6 @@ const verifyGoogleUserToken =
 	}
 
 export default {
-	verifyUserBearerToken,
 	signUserToken,
 	verifyGoogleUserToken,
 	verifyUserToken,

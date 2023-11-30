@@ -2,6 +2,7 @@ import { MiddlewareHandlerContext } from '$fresh/server.ts'
 import { secrets } from '../../../utils/globals.ts'
 import { HttpError } from '../../../utils/http-error.ts'
 import Jwt, { UserInfo } from '../../../utils/jwt.ts'
+import { getCookies } from 'std/http/cookie.ts'
 
 export interface State {
 	userInfo: UserInfo
@@ -12,14 +13,15 @@ export async function handler(
 	ctx: MiddlewareHandlerContext<State>,
 ) {
 	// Handle authorization
-	const jwtBearer = req.headers.get('authorization')
-	if (jwtBearer == null) {
+	const cookies = getCookies(req.headers)
+	const mergepanicUserJWt = cookies['mergepanic_auth']
+	if (mergepanicUserJWt == null) {
 		return new Response(null, {
 			status: 401,
 		})
 	}
 
-	const userInfo = await Jwt.verifyUserBearerToken(secrets.JWT_SECRET)(jwtBearer)
+	const userInfo = await Jwt.verifyUserToken(secrets.JWT_SECRET)(mergepanicUserJWt)
 	if (userInfo == null) {
 		return new Response(null, {
 			status: 401,

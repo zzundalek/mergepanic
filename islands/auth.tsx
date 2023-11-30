@@ -1,38 +1,38 @@
 import { IS_BROWSER } from '$fresh/runtime.ts'
-import { useEffect } from 'preact/hooks'
-import type {} from 'types/google.accounts'
+import { auth } from '../utils/signals/auth.ts'
 import { authCookieName, getCookies } from '../utils/sign-in.ts'
+import type {} from 'types/google.accounts'
+
 interface Props {
 	GOOGLE_CLIENT_ID: string
 	SERVER_URL: string
 }
 
 export default function Auth(props: Props) {
-	useEffect(() => {
-		if (!IS_BROWSER) return
+	if (!IS_BROWSER) return <></>
 
-		console.log('Auth component loaded.')
-		const authCookie = getCookies(document.cookie)[authCookieName]
+	console.log('Auth component loaded.')
+	const token = getCookies(document.cookie)[authCookieName]
 
-		const isUserSignedIn = authCookie != null
+	auth.value = token != null ? { token } : null
 
-		console.log('User is signed in: ', isUserSignedIn)
+	console.log('User token: ', token)
 
-		if (isUserSignedIn) {
-			return
-		}
+	// User is signed in => no need to initialize google sign in
+	if (token != null) {
+		return <></>
+	}
 
-		console.log('GoogleSignIn initialization started')
-		google.accounts.id.initialize({
-			client_id: props.GOOGLE_CLIENT_ID,
-			ux_mode: 'redirect',
-			login_uri: `${props.SERVER_URL}/api/auth/google-sign-in`,
-			use_fedcm_for_prompt: true,
-			itp_support: true,
-		})
-		google.accounts.id.prompt()
-		console.log('GoogleSignIn initialized')
-	}, [])
+	console.log('GoogleSignIn initialization started')
+	google.accounts.id.initialize({
+		client_id: props.GOOGLE_CLIENT_ID,
+		ux_mode: 'redirect',
+		login_uri: `${props.SERVER_URL}/api/auth/google-sign-in`,
+		use_fedcm_for_prompt: true,
+		itp_support: true,
+	})
+	google.accounts.id.prompt()
+	console.log('GoogleSignIn initialized')
 
 	return <></>
 }

@@ -7,6 +7,7 @@ import Media from '../islands/media.tsx'
 import { intitConsole } from '../utils/console.ts'
 import { globals } from '../utils/globals.ts'
 import Consent from '../islands/consent.tsx'
+import GoogleSignInButton from '../islands/google-sign-in-button.tsx'
 
 intitConsole(globals.ENV)
 
@@ -37,17 +38,19 @@ export default function App({ Component }: AppProps) {
 				/>
 				{/* TODO can be moved to improve performance? */}
 				<script src='https://accounts.google.com/gsi/client' />
+				<Media />
 				<Auth
 					GOOGLE_CLIENT_ID={globals.GOOGLE_CLIENT_ID}
 					SERVER_URL={globals.SERVER_URL}
 				/>
-				<Media />
 			</head>
 			<body
 				class='flex flex-col min-h-screen bg-canvas dark:bg-canvas_dark text-black dark:text-white'
 				f-client-nav
 			>
 				<NavBar />
+				{/* TODO REMOVE ONLY TEST */}
+				<GoogleSignInButton />
 				<div class='my-8'>
 					<Partial name='component'>
 						<Component />
