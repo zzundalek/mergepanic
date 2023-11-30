@@ -28,6 +28,8 @@ export default function Auth(props: Props) {
 			client_id: props.GOOGLE_CLIENT_ID,
 			ux_mode: 'redirect',
 			login_uri: `${props.SERVER_URL}/api/auth/google-sign-in`,
+			use_fedcm_for_prompt: true,
+			itp_support: true,
 		})
 		google.accounts.id.prompt()
 		console.log('GoogleSignIn initialized')
