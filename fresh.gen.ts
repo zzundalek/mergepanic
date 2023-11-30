@@ -4,38 +4,35 @@
 
 import * as $0 from './routes/_404.tsx'
 import * as $1 from './routes/_app.tsx'
-import * as $2 from './routes/api/auth/login.ts'
+import * as $2 from './routes/api/auth/google-sign-in.ts'
 import * as $3 from './routes/api/blog-posts/[id].ts'
-import * as $4 from './routes/api/sign-in.ts'
-import * as $5 from './routes/api/user/_middleware.ts'
-import * as $6 from './routes/api/user/blog-posts/[id]/comments.ts'
-import * as $7 from './routes/api/user/blog-posts/[id]/like.ts'
-import * as $8 from './routes/api/user/blog-posts/[id]/unlike.ts'
-import * as $9 from './routes/blog/[id].tsx'
-import * as $10 from './routes/index.tsx'
+import * as $4 from './routes/api/user/_middleware.ts'
+import * as $5 from './routes/api/user/blog-posts/[id]/comments.ts'
+import * as $6 from './routes/api/user/blog-posts/[id]/like.ts'
+import * as $7 from './routes/api/user/blog-posts/[id]/unlike.ts'
+import * as $8 from './routes/blog/[id].tsx'
+import * as $9 from './routes/index.tsx'
 import * as $$0 from './islands/add-comment.tsx'
 import * as $$1 from './islands/auth.tsx'
 import * as $$2 from './islands/comments.tsx'
 import * as $$3 from './islands/cookies-consent.tsx'
 import * as $$4 from './islands/fresh-badge.tsx'
 import * as $$5 from './islands/google-sign-in.tsx'
-import * as $$6 from './islands/google-sign-in2.tsx'
-import * as $$7 from './islands/media.tsx'
-import * as $$8 from './islands/post-like.tsx'
+import * as $$6 from './islands/media.tsx'
+import * as $$7 from './islands/post-like.tsx'
 
 const manifest = {
 	routes: {
 		'./routes/_404.tsx': $0,
 		'./routes/_app.tsx': $1,
-		'./routes/api/auth/login.ts': $2,
+		'./routes/api/auth/google-sign-in.ts': $2,
 		'./routes/api/blog-posts/[id].ts': $3,
-		'./routes/api/sign-in.ts': $4,
-		'./routes/api/user/_middleware.ts': $5,
-		'./routes/api/user/blog-posts/[id]/comments.ts': $6,
-		'./routes/api/user/blog-posts/[id]/like.ts': $7,
-		'./routes/api/user/blog-posts/[id]/unlike.ts': $8,
-		'./routes/blog/[id].tsx': $9,
-		'./routes/index.tsx': $10,
+		'./routes/api/user/_middleware.ts': $4,
+		'./routes/api/user/blog-posts/[id]/comments.ts': $5,
+		'./routes/api/user/blog-posts/[id]/like.ts': $6,
+		'./routes/api/user/blog-posts/[id]/unlike.ts': $7,
+		'./routes/blog/[id].tsx': $8,
+		'./routes/index.tsx': $9,
 	},
 	islands: {
 		'./islands/add-comment.tsx': $$0,
@@ -44,9 +41,8 @@ const manifest = {
 		'./islands/cookies-consent.tsx': $$3,
 		'./islands/fresh-badge.tsx': $$4,
 		'./islands/google-sign-in.tsx': $$5,
-		'./islands/google-sign-in2.tsx': $$6,
-		'./islands/media.tsx': $$7,
-		'./islands/post-like.tsx': $$8,
+		'./islands/media.tsx': $$6,
+		'./islands/post-like.tsx': $$7,
 	},
 	baseUrl: import.meta.url,
 }

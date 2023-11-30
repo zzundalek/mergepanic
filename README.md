@@ -13,7 +13,6 @@ Must be added into gihub actions deployment WFs for dev and prod at `/.github/wo
 
 - `JWT_SECRET` - secret for Json Web Token (e.g. `zH4NRP1HMALaaFnRZABFA6GOJkzU_gIj02alfL1lvI`)
 - `GOOGLE_CLIENT_ID` - Google client ID [https://console.cloud.google.com/apis/credentials](https://console.cloud.google.com/apis/credentials)
-- `GOOGLE_CLIENT_SECRET` - Google client secret [https://console.cloud.google.com/apis/credentials](https://console.cloud.google.com/apis/credentials)
 - `GA_ID` - id for Google Analytics
 - `SERVER_URL` - server url for apis (e.g. `http://localhost:8000`)
 - `ENV` - environment (used to setup loging etc) possible values : `dev` | `prod`. Default value is `dev`.

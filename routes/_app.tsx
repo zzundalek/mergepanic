@@ -2,11 +2,11 @@ import { AppProps } from '$fresh/server.ts'
 import { Partial } from '$fresh/runtime.ts'
 import Footer from '../components/footer.tsx'
 import { NavBar } from '../components/nav-bar.tsx'
-import Auth from '../islands/auth.tsx'
 import Media from '../islands/media.tsx'
 import { intitConsole } from '../utils/console.ts'
 import { globals } from '../utils/globals.ts'
 import CookiesConsent from '../islands/cookies-consent.tsx'
+import Auth from '../islands/auth.tsx'
 
 intitConsole(globals.ENV)
 
@@ -35,7 +35,13 @@ export default function App({ Component }: AppProps) {
 					src='https://kit.fontawesome.com/921eaf85c7.js'
 					crossOrigin='anonymous'
 				/>
-				<Auth serverUrl={globals.SERVER_URL} />
+				<script src='https://accounts.google.com/gsi/client' />
+				{
+					<Auth
+						GOOGLE_CLIENT_ID={globals.GOOGLE_CLIENT_ID}
+						SERVER_URL={globals.SERVER_URL}
+					/>
+				}
 				<Media />
 			</head>
 			<body

@@ -1,5 +1,3 @@
-import { auth } from '../utils/signals/auth.ts'
-import { IS_BROWSER } from '$fresh/runtime.ts'
 import { useState } from 'preact/hooks'
 
 export interface AddCommentProps {
@@ -12,12 +10,6 @@ export default function AddComment(props: AddCommentProps) {
 	const [loading, setLoading] = useState(false)
 
 	async function handleSubmit() {
-		const token = auth.value?.token
-
-		if (token == null) {
-			throw new Error('Failed to obtain token from auth.')
-		}
-
 		setLoading(true)
 
 		// TODO error handling
@@ -26,9 +18,6 @@ export default function AddComment(props: AddCommentProps) {
 			`/api/user/blog-posts/${blogPostId}/comments`,
 			{
 				method: 'POST',
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
 				body: JSON.stringify({
 					comment: text,
 				}),

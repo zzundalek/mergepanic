@@ -6,17 +6,16 @@ import Comments from '../../islands/comments.tsx'
 import AddComment from '../../islands/add-comment.tsx'
 import BlogPostService, { BlogPost } from '../../service/blog-posts.ts'
 import { globals } from '../../utils/globals.ts'
-import GoogleSignIn from '../../islands/google-sign-in.tsx'
 
 import * as gfm from 'gfm'
 import Badges from '../../components/badges/badges.tsx'
 import { Ogp } from '../../components/ogp.tsx'
 import { Head } from '$fresh/runtime.ts'
+import GoogleSignIn from '../../islands/google-sign-in.tsx'
 
 import 'prismjs/components/prism-typescript.min?no-check'
 import 'prismjs/components/prism-diff.min.js?no-check'
 import 'prismjs/components/prism-bash.min.js?no-check'
-import GoogleSignIn2 from '../../islands/google-sign-in2.tsx'
 
 export const handler: Handlers<BlogPost> = {
 	async GET(_req, ctx) {
@@ -94,9 +93,8 @@ export default function BlogPostPage(props: PageProps<BlogPost>) {
 							text={`Merge Panic: ${post.title}`}
 						/>
 					</div>
-					{/* <GoogleSignIn /> */}
-					<GoogleSignIn2 GOOGLE_CLIENT_ID={globals.GOOGLE_CLIENT_ID} />
 					<h2>Discussion</h2>
+					<GoogleSignIn GOOGLE_CLIENT_ID={globals.GOOGLE_CLIENT_ID} />
 					<AddComment blogPostId={post.id}></AddComment>
 					<Comments comments={post.comments} blogPostId={post.id} />
 				</div>

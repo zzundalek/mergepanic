@@ -39,7 +39,6 @@ const AddCommentBodySchema = z.object({
 
 const SecretsSchema = z.object({
 	JWT_SECRET: z.string(),
-	GOOGLE_CLIENT_SECRET: z.string(),
 })
 
 const EnvironmentSchema = z.union([z.literal('prod'), z.literal('dev')])
