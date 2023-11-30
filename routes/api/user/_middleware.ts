@@ -1,6 +1,7 @@
 import { MiddlewareHandlerContext } from '$fresh/server.ts'
+import { secrets } from '../../../utils/globals.ts'
 import { HttpError } from '../../../utils/http-error.ts'
-import jwt, { UserInfo } from '../../../utils/jwt.ts'
+import Jwt, { UserInfo } from '../../../utils/jwt.ts'
 
 export interface State {
 	userInfo: UserInfo
@@ -18,7 +19,7 @@ export async function handler(
 		})
 	}
 
-	const userInfo = await jwt.verifyToken(jwtBearer)
+	const userInfo = await Jwt.verifyUserBearerToken(secrets.JWT_SECRET)(jwtBearer)
 	if (userInfo == null) {
 		return new Response(null, {
 			status: 401,
