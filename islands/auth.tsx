@@ -1,53 +1,37 @@
-import { useEffect } from 'preact/hooks'
 import { IS_BROWSER } from '$fresh/runtime.ts'
-import { auth } from '../utils/signals/auth.ts'
-import { LoginBodySchema } from '../utils/validation.ts'
-
+import { useEffect } from 'preact/hooks'
+import type {} from 'types/google.accounts'
+import { authCookieName, getCookies } from '../utils/sign-in.ts'
 interface Props {
-	serverUrl: string
+	GOOGLE_CLIENT_ID: string
+	SERVER_URL: string
 }
 
-/** Obtains new auth token from cookies / API if its not set in `auth`. */
 export default function Auth(props: Props) {
-	const { serverUrl } = props
-
 	useEffect(() => {
-		/**
-		 * Fetches a token from server.
-		 *
-		 * @throws {Error} on failure
-		 * @returns the `token`
-		 */
-		async function fetchToken(): Promise<string> {
-			const response = await fetch(
-				`${serverUrl}/api/auth/login`,
-				{
-					method: 'POST',
-				},
-			)
-			// TODO add error handling
-			const result = LoginBodySchema.parse(await response.json())
+		if (!IS_BROWSER) return
 
-			return result.token
+		console.log('Auth component loaded.')
+		const authCookie = getCookies(document.cookie)[authCookieName]
+
+		const isUserSignedIn = authCookie != null
+
+		console.log('User is signed in: ', isUserSignedIn)
+
+		if (isUserSignedIn) {
+			return
 		}
 
-		if (!IS_BROWSER || auth.value != null) return
-
-		const storedToken = localStorage.getItem('authToken')
-
-		if (storedToken != null) {
-			console.log('Token loaded from cookies', storedToken)
-			auth.value = { token: storedToken }
-		} else {
-			console.log('Fetching new token')
-
-			fetchToken()
-				.then((token) => {
-					auth.value = { token }
-					localStorage.setItem('authToken', token)
-				})
-				.catch((e) => console.error('Failed to obtain token', e))
-		}
+		console.log('GoogleSignIn initialization started')
+		google.accounts.id.initialize({
+			client_id: props.GOOGLE_CLIENT_ID,
+			ux_mode: 'redirect',
+			login_uri: `${props.SERVER_URL}/api/auth/google-sign-in`,
+			use_fedcm_for_prompt: true,
+			itp_support: true,
+		})
+		google.accounts.id.prompt()
+		console.log('GoogleSignIn initialized')
 	}, [])
 
 	return <></>

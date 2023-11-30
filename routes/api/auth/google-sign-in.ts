@@ -3,15 +3,12 @@ import { z } from 'zod'
 import Jwt, { GoogleToken } from '../../../utils/jwt.ts'
 import { globals, secrets } from '../../../utils/globals.ts'
 import { getCookies, setCookie } from 'std/http/cookie.ts'
-
-const authCookieName = 'mergepanic_auth'
+import { authCookieName } from '../../../utils/sign-in.ts'
 
 const GoogleSignInRedirectSchema = z.object({
 	g_csrf_token: z.string(),
 	credential: z.string(),
 })
-
-export { authCookieName }
 
 /**
  * See more info on

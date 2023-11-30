@@ -35,7 +35,12 @@ export default function App({ Component }: AppProps) {
 					src='https://kit.fontawesome.com/921eaf85c7.js'
 					crossOrigin='anonymous'
 				/>
-				<Auth serverUrl={globals.SERVER_URL} />
+				{/* TODO can be moved to improve performance? */}
+				<script src='https://accounts.google.com/gsi/client' />
+				<Auth
+					GOOGLE_CLIENT_ID={globals.GOOGLE_CLIENT_ID}
+					SERVER_URL={globals.SERVER_URL}
+				/>
 				<Media />
 			</head>
 			<body
