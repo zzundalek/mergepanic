@@ -92,6 +92,7 @@ export default function PostLike(props: PostLikesProps) {
 	}, [isToggleLikeRequested])
 
 	/** Hydrates the like status for current user based on local storage  */
+	// TODO could be generated on BE?
 	useEffect(() => {
 		console.log('Hydrationg post status')
 

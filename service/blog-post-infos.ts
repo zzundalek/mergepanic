@@ -12,7 +12,7 @@ import Dao from './dao.ts'
 
 class BlogPostInfoService extends Dao<BlogPostInfo> {
 	constructor() {
-		super('blogPosts')
+		super('blogPosts') // TODO NEED TO CHANGE to blog_posts
 	}
 
 	/** Get post by `blogPostId` if existes otherwise returns null */
