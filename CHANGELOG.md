@@ -6,7 +6,8 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
-|  Adds optimized build step ([#63](https://github.com/zzundalek/mergepanic/pull/63)) | feature | [4a99f996a05a6b6d7e4e8fa47025db2c397b7e1d](https://github.com/zzundalek/mergepanic/commit/4a99f996a05a6b6d7e4e8fa47025db2c397b7e1d) |
+| Fresh 1.6 ([#68](https://github.com/zzundalek/mergepanic/pull/68)) | feature | [16ae45180c112d949639ca9ac6658b85c1067b54](https://github.com/zzundalek/mergepanic/commit/16ae45180c112d949639ca9ac6658b85c1067b54) |
+| Adds optimized build step ([#63](https://github.com/zzundalek/mergepanic/pull/63)) | feature | [4a99f996a05a6b6d7e4e8fa47025db2c397b7e1d](https://github.com/zzundalek/mergepanic/commit/4a99f996a05a6b6d7e4e8fa47025db2c397b7e1d) |
 
 ## [1.3.0] - 2023-11-20
 
