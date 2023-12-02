@@ -17,7 +17,8 @@
 		"indentWidth": 4,
 		"semiColons": false,
 		"singleQuote": true,
-		"proseWrap": "preserve"
+		"proseWrap": "preserve",
+		"exclude": ["data/", ".github/", "release/", "docs/", ".vscode/", "README.md", "CHANGELOG.md", "deno.json"]
 	},
 	"imports": {
 		"$fresh/": "https://deno.land/x/fresh@1.6.0/",
