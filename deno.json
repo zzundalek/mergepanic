@@ -1,4 +1,5 @@
 {
+	"nodeModulesDir": true,
 	"lock": false,
 	"tasks": {
 		"check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
@@ -6,7 +7,8 @@
 		"dev": "deno run -A --unstable-kv --env=.env --unstable-hmr=static/,routes/,data/,utils/,components/,islands/,service/ dev.ts",
 		"build": "deno run -A --unstable-kv dev.ts build",
 		"update": "deno run -A -r https://fresh.deno.dev/update .",
-		"release": "deno run -A ./release/create-new-release.ts"
+		"release": "deno run -A ./release/create-new-release.ts",
+		"preview": "deno run -A main.ts"
 	},
 	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
 	"fmt": {
@@ -15,18 +17,20 @@
 		"indentWidth": 4,
 		"semiColons": false,
 		"singleQuote": true,
-		"proseWrap": "preserve"
+		"proseWrap": "preserve",
+		"exclude": ["data/", ".github/", "release/", "docs/", ".vscode/", "README.md", "CHANGELOG.md", "deno.json"]
 	},
 	"imports": {
-		"$fresh/": "https://deno.land/x/fresh@1.5.4/",
-		"preact": "https://esm.sh/preact@10.18.1",
-		"preact/": "https://esm.sh/preact@10.18.1/",
+		"$fresh/": "https://deno.land/x/fresh@1.6.0/",
+		"preact": "https://esm.sh/preact@10.19.2",
+		"preact/": "https://esm.sh/preact@10.19.2/",
 		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
 		"@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
 		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
 		"frontmatter": "https://deno.land/x/frontmatter@v0.1.5/mod.ts",
-		"twind": "https://esm.sh/twind@0.16.19",
-		"twind/": "https://esm.sh/twind@0.16.19/",
+		"tailwindcss": "npm:tailwindcss@3.3.5",
+     	"tailwindcss/": "npm:/tailwindcss@3.3.5/",
+     	"tailwindcss/plugin": "npm:/tailwindcss@3.3.5/plugin.js",
 		"std/": "https://deno.land/std@0.202.0/",
 		"prismjs/": "https://esm.sh/prismjs@1.29.0/",
 		"gfm": "https://deno.land/x/gfm@0.2.1/mod.ts",
