@@ -3,6 +3,7 @@ import { secrets } from '../../../utils/globals.ts'
 import { HttpError } from '../../../utils/http-error.ts'
 import Jwt, { UserInfo } from '../../../utils/jwt.ts'
 import { getCookies } from 'std/http/cookie.ts'
+import { authCookieName } from '../../../utils/sign-in.ts'
 
 export interface State {
 	userInfo: UserInfo
@@ -14,7 +15,7 @@ export async function handler(
 ) {
 	// Handle authorization
 	const cookies = getCookies(req.headers)
-	const mergepanicUserJWt = cookies['mergepanic_auth']
+	const mergepanicUserJWt = cookies[authCookieName]
 	if (mergepanicUserJWt == null) {
 		return new Response(null, {
 			status: 401,

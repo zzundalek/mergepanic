@@ -1,29 +1,28 @@
-import { useEffect } from 'preact/hooks'
+import { useEffect, useRef } from 'preact/hooks'
 import { auth } from '../utils/signals/auth.ts'
-import { IS_BROWSER } from '$fresh/runtime.ts'
 import type {} from 'types/google.accounts'
 
-// TODO JUST TEST button should be refactored
+/** Renders Google sign-in button to element specified by button. */
+function renderButton(button: HTMLDivElement) {
+	console.log('Rendering google sign in button')
+	window.google.accounts.id.renderButton(
+		button,
+		{
+			type: 'standard',
+			theme: 'filled_blue',
+		},
+	)
+}
+
 export default function GoogleSignInButton() {
-	const uniqueId = crypto.randomUUID()
+	const signInButton = useRef<HTMLDivElement | null>(null)
 
 	useEffect(() => {
-		console.log('In use effect')
-		if (auth.value != null || !IS_BROWSER) return
+		// Skip rendering the button if user is logged in
+		if (auth.value != null || signInButton.current == null) return
 
-		window.google.accounts.id.renderButton(
-			document.getElementById(uniqueId) as unknown as HTMLElement,
-			{
-				type: 'standard',
-				theme: 'filled_blue',
-			},
-		)
-	}, [auth.value])
+		renderButton(signInButton.current)
+	}, [])
 
-	return (
-		<>
-			<span>Test google sign-in button</span>
-			<div id={uniqueId}></div>
-		</>
-	)
+	return <div ref={signInButton}></div>
 }

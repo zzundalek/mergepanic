@@ -7,7 +7,6 @@ import Media from '../islands/media.tsx'
 import { intitConsole } from '../utils/console.ts'
 import { globals } from '../utils/globals.ts'
 import Consent from '../islands/consent.tsx'
-import GoogleSignInButton from '../islands/google-sign-in-button.tsx'
 
 intitConsole(globals.ENV)
 
@@ -49,8 +48,6 @@ export default function App({ Component }: AppProps) {
 				f-client-nav
 			>
 				<NavBar />
-				{/* TODO REMOVE ONLY TEST */}
-				<GoogleSignInButton />
 				<div class='my-8'>
 					<Partial name='component'>
 						<Component />

@@ -1,21 +1,19 @@
 import { Handlers } from '$fresh/server.ts'
 import { z } from 'zod'
-import Jwt, { GoogleToken } from '../../../utils/jwt.ts'
+import Jwt, { GoogleToken, UserInfo } from '../../../utils/jwt.ts'
 import { globals, secrets } from '../../../utils/globals.ts'
-import { getCookies, setCookie } from 'std/http/cookie.ts'
-import { authCookieName } from '../../../utils/sign-in.ts'
+import { setCookie } from 'std/http/cookie.ts'
+import { authCookieName, authCsrfProtectionHeader } from '../../../utils/sign-in.ts'
+import UsersService from '../../../service/users.ts'
 
-const GoogleSignInRedirectSchema = z.object({
-	g_csrf_token: z.string(),
+const GoogleSignInBodySchema = z.object({
 	credential: z.string(),
 })
 
 /**
  * See more info on
  *
- * https://developers.google.com/identity/sign-in/web/sign-in
- * https://developers.google.com/identity/gsi/web/guides/migration#popup-mode
- * https://developers.google.com/identity/gsi/web/guides/verify-google-id-token
+ * https://developers.google.com/identity/gsi/web/guides/offerings
  * https://console.cloud.google.com/apis/credentials?project=mergepanic
  */
 export const handler: Handlers<void, void> = {
@@ -23,42 +21,45 @@ export const handler: Handlers<void, void> = {
 	async POST(req, _ctx) {
 		let googleUser: GoogleToken
 		try {
-			const formData = await req.formData()
-			const rawData = {
-				g_csrf_token: formData.get('g_csrf_token'),
-				credential: formData.get('credential'),
-			}
-			const googleSignInRedirect = GoogleSignInRedirectSchema.parse(rawData)
+			const googleSignIn = GoogleSignInBodySchema.parse(await req.json())
+			console.log(googleSignIn.credential)
 
-			const cookies = getCookies(req.headers)
-			if (googleSignInRedirect.g_csrf_token !== cookies['g_csrf_token']) {
-				throw new Error('Invalid g_csrf_token.')
+			if (req.headers.get(authCsrfProtectionHeader) !== '1') {
+				throw new Error('CSRF protection header not found!')
 			}
-
-			console.log(googleSignInRedirect.credential)
 
 			const token = await Jwt.verifyGoogleUserToken(globals.GOOGLE_CLIENT_ID)(
-				googleSignInRedirect.credential,
+				googleSignIn.credential,
 			)
 			if (token == null) {
-				throw new Error('Unable to validate google token')
+				throw new Error('Unable to validate google sign-in token!')
 			}
 			googleUser = token
 		} catch (error) {
-			console.error('Error parsing data', error)
+			console.error('Google sign-in token failure.', error)
 			return new Response(null, { status: 400 })
 		}
 
 		try {
-			// TODO get user from DB
-			const mergePanicUserToken = await Jwt.signUserToken(secrets.JWT_SECRET)({
-				sub: crypto.randomUUID(),
-				displayName: googleUser.name,
-				userDetail: {
-					type: 'google',
-					userId: googleUser.sub,
-				},
-			})
+			let userDetail: UserInfo
+			const usersService = new UsersService()
+			const user = await usersService.getUserByGoogleId(googleUser.sub)
+			if (user != null) {
+				userDetail = user.value
+			} else {
+				userDetail = {
+					sub: crypto.randomUUID(),
+					displayName: googleUser.name,
+					userDetail: {
+						type: 'google',
+						userId: googleUser.sub,
+					},
+				}
+				await usersService.insertUser(userDetail)
+			}
+			const mergePanicUserToken = await Jwt.signUserToken(secrets.JWT_SECRET)(
+				userDetail,
+			)
 
 			if (mergePanicUserToken == null) {
 				throw new Error('Unable to sign an Merge Panic user token')
@@ -75,13 +76,12 @@ export const handler: Handlers<void, void> = {
 				secure: true,
 			})
 
-			headers.set('location', '/')
 			return new Response(null, {
-				status: 303, // "See Other"
+				status: 200,
 				headers,
 			})
 		} catch (error) {
-			console.error('Error parsing data', error)
+			console.error('Error signing user sign-in token', error)
 			return new Response(null, { status: 400 })
 		}
 	},

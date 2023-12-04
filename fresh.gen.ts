@@ -18,6 +18,7 @@ import * as $fresh_badge from './islands/fresh-badge.tsx'
 import * as $google_sign_in_button from './islands/google-sign-in-button.tsx'
 import * as $media from './islands/media.tsx'
 import * as $post_like from './islands/post-like.tsx'
+import * as $sign_in_popup from './islands/sign-in-popup.tsx'
 import { type Manifest } from '$fresh/server.ts'
 
 const manifest = {
@@ -40,6 +41,7 @@ const manifest = {
 		'./islands/google-sign-in-button.tsx': $google_sign_in_button,
 		'./islands/media.tsx': $media,
 		'./islands/post-like.tsx': $post_like,
+		'./islands/sign-in-popup.tsx': $sign_in_popup,
 	},
 	baseUrl: import.meta.url,
 } satisfies Manifest
