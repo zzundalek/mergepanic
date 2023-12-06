@@ -9,17 +9,28 @@ export default function Footer() {
 					<FreshBadge />
 				</div>
 				<div>
-					Logo made by&nbsp;
-					<a
-						href='https://www.designevo.com/'
-						title='Free Online Logo Maker'
-					>
-						DesignEvo<br /> free logo creator
+					<a href='/terms-of-service' class='hover:underline' target='_blank'>
+						Terms of service
+					</a>{' '}
+					<a href='/privacy-policy' class='hover:underline' target='_blank'>
+						Privacy policy
 					</a>
+					<br />
+					<span>
+						Logo made by&nbsp;
+						<a
+							href='https://www.designevo.com/'
+							target='_blank'
+							rel='noopener noreferrer'
+							class='hover:underline'
+							title='Free Online Logo Maker'
+						>
+							DesignEvo free logo creator
+						</a>
+					</span>
 				</div>
 				<div>
-					Copyright © 2023 Merge Panic<br />
-					All right reserved.
+					Copyright © 2023 Merge Panic<br />All right reserved.
 				</div>
 			</div>
 		</div>

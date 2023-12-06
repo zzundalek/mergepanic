@@ -10,8 +10,10 @@ import * as $api_user_blog_posts_id_like from './routes/api/user/blog-posts/[id]
 import * as $api_user_blog_posts_id_unlike from './routes/api/user/blog-posts/[id]/unlike.ts'
 import * as $blog_id_ from './routes/blog/[id].tsx'
 import * as $index from './routes/index.tsx'
+import * as $privacy_policy from './routes/privacy-policy.tsx'
+import * as $terms_of_service from './routes/terms-of-service.tsx'
 import * as $auth from './islands/auth.tsx'
-import * as $cookies_consent from './islands/cookies-consent.tsx'
+import * as $consent from './islands/consent.tsx'
 import * as $fresh_badge from './islands/fresh-badge.tsx'
 import * as $media from './islands/media.tsx'
 import * as $post_like from './islands/post-like.tsx'
@@ -27,10 +29,12 @@ const manifest = {
 		'./routes/api/user/blog-posts/[id]/unlike.ts': $api_user_blog_posts_id_unlike,
 		'./routes/blog/[id].tsx': $blog_id_,
 		'./routes/index.tsx': $index,
+		'./routes/privacy-policy.tsx': $privacy_policy,
+		'./routes/terms-of-service.tsx': $terms_of_service,
 	},
 	islands: {
 		'./islands/auth.tsx': $auth,
-		'./islands/cookies-consent.tsx': $cookies_consent,
+		'./islands/consent.tsx': $consent,
 		'./islands/fresh-badge.tsx': $fresh_badge,
 		'./islands/media.tsx': $media,
 		'./islands/post-like.tsx': $post_like,

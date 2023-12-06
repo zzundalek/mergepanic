@@ -6,7 +6,7 @@ import Auth from '../islands/auth.tsx'
 import Media from '../islands/media.tsx'
 import { intitConsole } from '../utils/console.ts'
 import { globals } from '../utils/globals.ts'
-import CookiesConsent from '../islands/cookies-consent.tsx'
+import Consent from '../islands/consent.tsx'
 
 intitConsole(globals.ENV)
 
@@ -50,7 +50,7 @@ export default function App({ Component }: AppProps) {
 				</div>
 				<Footer />
 				<div class='fixed bottom-0 bg-canvas dark:bg-canvas_dark w-full'>
-					<CookiesConsent />
+					<Consent />
 				</div>
 			</body>
 		</html>
