@@ -1,8 +1,9 @@
 import { Signal } from '@preact/signals'
 import { useEffect, useState } from 'preact/hooks'
 import { IS_BROWSER } from '$fresh/runtime.ts'
-import { auth } from '../utils/signals/auth.ts'
 import { LikeBodySchema } from '../utils/validation.ts'
+import SignInPopup from './sign-in-popup.tsx'
+import { auth } from '../utils/signals/auth.ts'
 
 interface PostLikes {
 	id: string
@@ -27,7 +28,16 @@ export default function PostLike(props: PostLikesProps) {
 	const { serverUrl } = props
 	const post = props.post
 	const [isRequesting, setIsRequesting] = useState(false)
-	const [isToggleLikeRequested, setIsToggleLikeRequested] = useState(false)
+	const [isToggleLikeRequested, setIsToggleLikeRequested] = useState(false) // TODO REFACTOR not to use useEffect
+	const [show, setShow] = useState(false)
+
+	function toggleLike() {
+		if (auth.value == null) {
+			setShow(true)
+		} else {
+			setIsToggleLikeRequested(true)
+		}
+	}
 
 	/** Likes/Unlikes the post for current user */
 	useEffect(() => {
@@ -38,20 +48,11 @@ export default function PostLike(props: PostLikesProps) {
 		 * @returns the `token`
 		 */
 		async function toggleLike(operation: LikeOperation) {
-			const token = auth.value?.token
-
-			if (token == null) {
-				throw new Error('Failed to obtain token from auth.')
-			}
-
 			const response = await fetch(
 				// deno-fmt-ignore
 				`${serverUrl}/api/user/blog-posts/${post.value.id}/${operation}`,
 				{
 					method: 'PUT',
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
 				},
 			)
 
@@ -102,6 +103,7 @@ export default function PostLike(props: PostLikesProps) {
 	}, [isToggleLikeRequested])
 
 	/** Hydrates the like status for current user based on local storage  */
+	// TODO could be generated on BE?
 	useEffect(() => {
 		console.log('Hydrationg post status')
 
@@ -117,18 +119,21 @@ export default function PostLike(props: PostLikesProps) {
 	}, [])
 
 	return (
-		<div
-			class={`${
-				post.value.liked
-					? 'text-secondary dark:text-secondary_dark'
-					: 'text-neutral dark:text-neutral_dark'
-			} hover:cursor-pointer hover:scale-125 ease-in-out select-none`}
-		>
-			<div onClick={() => setIsToggleLikeRequested(true)}>
-				<i class='fa-regular fa-thumbs-up'></i>
-				&nbsp;
-				<span>{post.value.likesCount}</span>
+		<>
+			<div
+				class={`${
+					post.value.liked
+						? 'text-secondary dark:text-secondary_dark'
+						: 'text-neutral dark:text-neutral_dark'
+				} hover:cursor-pointer hover:scale-125 ease-in-out select-none`}
+			>
+				<div onClick={() => toggleLike()}>
+					<i class='fa-regular fa-thumbs-up'></i>
+					&nbsp;
+					<span>{post.value.likesCount}</span>
+				</div>
 			</div>
-		</div>
+			<SignInPopup show={show} onClose={() => setShow(false)} />
+		</>
 	)
 }

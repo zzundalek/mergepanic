@@ -1,4 +1,4 @@
-import { AppProps } from '$fresh/server.ts'
+import { PageProps } from '$fresh/server.ts'
 import { Partial } from '$fresh/runtime.ts'
 import Footer from '../components/footer.tsx'
 import { NavBar } from '../components/nav-bar.tsx'
@@ -11,7 +11,7 @@ import Consent from '../islands/consent.tsx'
 intitConsole(globals.ENV)
 
 /** App component */
-export default function App({ Component }: AppProps) {
+export default function App({ Component }: PageProps) {
 	return (
 		<html lang='en'>
 			<head>
@@ -35,8 +35,13 @@ export default function App({ Component }: AppProps) {
 					src='https://kit.fontawesome.com/921eaf85c7.js'
 					crossOrigin='anonymous'
 				/>
-				<Auth serverUrl={globals.SERVER_URL} />
+				{/* TODO can be moved to improve performance? */}
+				<script src='https://accounts.google.com/gsi/client' />
 				<Media />
+				<Auth
+					GOOGLE_CLIENT_ID={globals.GOOGLE_CLIENT_ID}
+					SERVER_URL={globals.SERVER_URL}
+				/>
 			</head>
 			<body
 				class='flex flex-col min-h-screen bg-canvas dark:bg-canvas_dark text-black dark:text-white'

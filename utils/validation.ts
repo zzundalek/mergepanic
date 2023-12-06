@@ -40,6 +40,7 @@ const GlobalsSchema = z.object({
 	SERVER_URL: ServerUrlSchema,
 	GA_ID: z.optional(z.string()),
 	ENV: EnvironmentSchema,
+	GOOGLE_CLIENT_ID: z.string(),
 })
 
 /* Types infered based on schemas */
