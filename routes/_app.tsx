@@ -1,4 +1,4 @@
-import { AppProps } from '$fresh/server.ts'
+import { PageProps } from '$fresh/server.ts'
 import { Partial } from '$fresh/runtime.ts'
 import Footer from '../components/footer.tsx'
 import { NavBar } from '../components/nav-bar.tsx'
@@ -11,7 +11,7 @@ import Consent from '../islands/consent.tsx'
 intitConsole(globals.ENV)
 
 /** App component */
-export default function App({ Component }: AppProps) {
+export default function App({ Component }: PageProps) {
 	return (
 		<html lang='en'>
 			<head>
