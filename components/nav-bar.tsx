@@ -13,9 +13,6 @@ export function NavBar() {
 					<li>
 						<a href='/' class='hover:underline'>Blog</a>
 					</li>
-					<li>
-						<a href='/' class='hover:underline'>About me</a>
-					</li>
 				</ul>
 			</div>
 		</div>
