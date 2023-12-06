@@ -25,6 +25,11 @@ How to review here...
 | -- | -- | -- |
 | <Description> ([#<PULL_REQUEST_ID>](https://github.com/zzundalek/mergepanic/pull/PULL_REQUEST_ID)) | feature / fix / chore | [COMMIT_ID](https://github.com/zzundalek/mergepanic/commit/COMMIT_ID) |
 
+## Checklist
+
+- [ ] Update task real story points
+- [ ] Update github actions?
+- [ ] Update README?
 
 ## Supplementary info
 

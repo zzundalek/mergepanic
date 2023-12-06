@@ -1,7 +1,9 @@
-import { Options } from '$fresh/plugins/twind.ts'
+import { type Config } from 'tailwindcss'
 
 export default {
-	selfURL: import.meta.url,
+	content: [
+		'{routes,islands,components}/**/*.{ts,tsx}',
+	],
 	theme: {
 		extend: {
 			fontFamily: {
@@ -25,13 +27,15 @@ export default {
 			},
 			animation: {
 				'fadeIn': 'fadeIn 2s ease-in',
+				'done': 'fadeIn 0.4s ease-out',
+				'popUpIn': 'fadeIn 0.2s ease-out',
 			},
 			keyframes: {
 				fadeIn: {
-					'0%': { opacity: 0 },
-					'100%': { opacity: 1 },
+					'0%': { 'opacity': '0', 'scale': '0.8' },
+					'100%': { 'opacity': '1', 'scale': '1' },
 				},
 			},
 		},
 	},
-} as Options
+} as Config

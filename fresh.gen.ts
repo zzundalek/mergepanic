@@ -2,39 +2,48 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from './routes/_404.tsx'
-import * as $1 from './routes/_app.tsx'
-import * as $2 from './routes/api/auth/login.ts'
-import * as $3 from './routes/api/user/_middleware.ts'
-import * as $4 from './routes/api/user/blog-posts/[id]/like.ts'
-import * as $5 from './routes/api/user/blog-posts/[id]/unlike.ts'
-import * as $6 from './routes/blog/[id].tsx'
-import * as $7 from './routes/index.tsx'
-import * as $$0 from './islands/auth.tsx'
-import * as $$1 from './islands/cookies-consent.tsx'
-import * as $$2 from './islands/fresh-badge.tsx'
-import * as $$3 from './islands/media.tsx'
-import * as $$4 from './islands/post-like.tsx'
+import * as $_404 from './routes/_404.tsx'
+import * as $_app from './routes/_app.tsx'
+import * as $api_auth_google_sign_in from './routes/api/auth/google-sign-in.ts'
+import * as $api_user_middleware from './routes/api/user/_middleware.ts'
+import * as $api_user_blog_posts_id_like from './routes/api/user/blog-posts/[id]/like.ts'
+import * as $api_user_blog_posts_id_unlike from './routes/api/user/blog-posts/[id]/unlike.ts'
+import * as $blog_id_ from './routes/blog/[id].tsx'
+import * as $index from './routes/index.tsx'
+import * as $privacy_policy from './routes/privacy-policy.tsx'
+import * as $terms_of_service from './routes/terms-of-service.tsx'
+import * as $auth from './islands/auth.tsx'
+import * as $consent from './islands/consent.tsx'
+import * as $fresh_badge from './islands/fresh-badge.tsx'
+import * as $google_sign_in_button from './islands/google-sign-in-button.tsx'
+import * as $media from './islands/media.tsx'
+import * as $post_like from './islands/post-like.tsx'
+import * as $sign_in_popup from './islands/sign-in-popup.tsx'
+import { type Manifest } from '$fresh/server.ts'
 
 const manifest = {
 	routes: {
-		'./routes/_404.tsx': $0,
-		'./routes/_app.tsx': $1,
-		'./routes/api/auth/login.ts': $2,
-		'./routes/api/user/_middleware.ts': $3,
-		'./routes/api/user/blog-posts/[id]/like.ts': $4,
-		'./routes/api/user/blog-posts/[id]/unlike.ts': $5,
-		'./routes/blog/[id].tsx': $6,
-		'./routes/index.tsx': $7,
+		'./routes/_404.tsx': $_404,
+		'./routes/_app.tsx': $_app,
+		'./routes/api/auth/google-sign-in.ts': $api_auth_google_sign_in,
+		'./routes/api/user/_middleware.ts': $api_user_middleware,
+		'./routes/api/user/blog-posts/[id]/like.ts': $api_user_blog_posts_id_like,
+		'./routes/api/user/blog-posts/[id]/unlike.ts': $api_user_blog_posts_id_unlike,
+		'./routes/blog/[id].tsx': $blog_id_,
+		'./routes/index.tsx': $index,
+		'./routes/privacy-policy.tsx': $privacy_policy,
+		'./routes/terms-of-service.tsx': $terms_of_service,
 	},
 	islands: {
-		'./islands/auth.tsx': $$0,
-		'./islands/cookies-consent.tsx': $$1,
-		'./islands/fresh-badge.tsx': $$2,
-		'./islands/media.tsx': $$3,
-		'./islands/post-like.tsx': $$4,
+		'./islands/auth.tsx': $auth,
+		'./islands/consent.tsx': $consent,
+		'./islands/fresh-badge.tsx': $fresh_badge,
+		'./islands/google-sign-in-button.tsx': $google_sign_in_button,
+		'./islands/media.tsx': $media,
+		'./islands/post-like.tsx': $post_like,
+		'./islands/sign-in-popup.tsx': $sign_in_popup,
 	},
 	baseUrl: import.meta.url,
-}
+} satisfies Manifest
 
 export default manifest

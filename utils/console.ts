@@ -1,4 +1,4 @@
-import { Environment } from './globals.ts'
+import { Environment } from './validation.ts'
 
 /**
  * Set logging depending on

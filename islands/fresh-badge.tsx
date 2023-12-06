@@ -10,7 +10,12 @@ export default function FreshBadge() {
 		: 'https://fresh.deno.dev/fresh-badge.svg'
 
 	return (
-		<a href='https://fresh.deno.dev' class='animate-fadeIn'>
+		<a
+			href='https://fresh.deno.dev'
+			target='_blank'
+			rel='noopener noreferrer'
+			class='animate-fadeIn'
+		>
 			<img
 				width='197'
 				height='37'
