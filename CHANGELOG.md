@@ -6,7 +6,7 @@ All notable changes in Mergepanic will be documented in this file.
 
 | Description | Type | Commit |
 | -- | -- | -- |
-| | | |
+| Fix Deno deploy project name for prod | fix | [a39cfa9ab76de8ea73ac95d62e58e458c3056373](https://github.com/zzundalek/mergepanic/commit/a39cfa9ab76de8ea73ac95d62e58e458c3056373) |
 
 ## [1.4.0] - 2023-12-06
 
