@@ -1,39 +1,35 @@
-name: Prod deploy
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: main
+name: Deploy to GitHub Pages
 
-env:
-  JWT_SECRET: EMPTY-ONLY_NEEDED_FOR_BUILD
-  GOOGLE_CLIENT_ID: EMPTY-ONLY_NEEDED_FOR_BUILD  
-  SERVER_URL: http://empty-only_needed_for_build
-  ENV: prod
+on:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: write
 
 jobs:
-  deploy:
-    name: Prod Deploy
-    runs-on: ubuntu-latest
+    deploy:
+        name: Deploy to GitHub Pages
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: dart-lang/setup-dart@v1
+              with:
+                sdk: "3.13.3"
 
-    permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
 
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v3
+            - name: Install dependencies
+              run: dart pub get
+            - name: Install Jaspr CLI
+              run:  dart pub global activate jaspr_cli
+            - name: Build website
+              run: jaspr build
 
-      - name: Install Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-
-      - name: Build step
-        run: "deno task build"
-
-      - name: Upload to Deno Deploy
-        uses: denoland/deployctl@v1
-        with:
-          project: "mergepanic"
-          entrypoint: "./main.ts"
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./build/jaspr
+                  user_name: github-actions[bot]
+                  user_email: 41898282+github-actions[bot]@users.noreply.github.com
